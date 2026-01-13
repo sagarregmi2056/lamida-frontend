@@ -11,7 +11,7 @@ const logos = [
   {
     name: 'Bittensor',
     type: 'image',
-    src: '/trustedpartner/bittensor.png', // Place logo files in public/logos/
+    src: '/trustedpartner/bittensorwhite.png', // Place logo files in public/logos/
     alt: 'Bittensor',
     fallback: <Network className="h-14 md:h-16 w-14 md:w-14 text-white" />
   },
