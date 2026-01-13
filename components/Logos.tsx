@@ -66,10 +66,10 @@ export default function Logos() {
   };
 
   return (
-    <section className="relative z-10 w-full py-10 bg-gradient-to-br from-[#0B1222]/40 to-[#1a2a4a]/10 backdrop-blur-xl border-y border-white/[0.05]">
-      <div className="container mx-auto px-6">
+    <section className="relative z-10 w-full pt-5 pb-8 bg-gradient-to-br from-[#0B1222]/40 to-[#1a2a4a]/10 backdrop-blur-xl border-y border-white/[0.05]">
+      <div className="container mx-auto px-4">
         {/* Powering Tools Text */}
-<p className="text-blue-200/70 text-center text-lg md:text-xl lg:text-2xl mb-8 font-medium tracking-wide">
+<p className="text-blue-300/70 text-center text-sm md:text-sm lg:text-2xl mb-8 font-light tracking-normal">
   Powering Tools and Integrations from companies all over the world
 </p>
 
