@@ -80,14 +80,7 @@ export default function WhyBittensor() {
             className="relative flex h-[500px] w-full items-center justify-center"
             ref={containerRef}
           >
-
-            <div className="flex w-full max-w-lg items-center justify-between gap-12 relative">
-      
-
-             
-             
-            </div>
-             <AnimatedBeamMultipleOutputDemo className="w-full h-full" />
+            <AnimatedBeamMultipleOutputDemo className="w-full h-full" />
           </div>
         </div>
 

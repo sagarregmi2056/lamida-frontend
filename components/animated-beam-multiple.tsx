@@ -40,13 +40,13 @@ export function AnimatedBeamMultipleOutputDemo({
 
   return (
     <div
-      className={cn("relative flex h-[500px] w-full items-center justify-center p-10", className)}
+      className={cn("relative flex h-[300px] md:h-[500px] w-full items-center justify-center pl-0 pr-4 md:p-10", className)}
       ref={containerRef}
     >
-      <div className="flex w-full max-w-9xl flex-row items-center justify-between gap-58 md:gap-94">
+      <div className="flex w-full md:max-w-9xl flex-row items-center justify-between gap-16 md:gap-58 lg:gap-94">
         {/* Central Node - Left Side */}
         <div className="flex flex-col items-center justify-center">
-          <Circle ref={centralRef} className="size-28 md:size-32 border-white/20 bg-white">
+          <Circle ref={centralRef} className="size-20 md:size-28 lg:size-32 border-white/20 bg-white">
             <Image
               src="/trustedpartner/bittensor.png"
               alt="Bittensor"
@@ -58,9 +58,9 @@ export function AnimatedBeamMultipleOutputDemo({
         </div>
 
         {/* Right Side Nodes - 4 Icons */}
-        <div className="flex flex-col justify-between gap-10 h-full">
+        <div className="flex flex-col justify-between gap-4 md:gap-10 h-full">
           {/* Icon 1 - Top (CheckerChain) */}
-          <Circle ref={icon1Ref} className="size-16 md:size-20 border-white/30 bg-black">
+          <Circle ref={icon1Ref} className="size-12 md:size-16 lg:size-20 border-white/30 bg-black">
             <Image
               src="/checkerchain.png"
               alt="CheckerChain"
@@ -71,17 +71,17 @@ export function AnimatedBeamMultipleOutputDemo({
           </Circle>
           
           {/* Icon 2 - Second from top */}
-          <Circle ref={icon2Ref} className="size-16 md:size-20 border-white/30">
-            <Binary className="text-green-400 size-8 md:size-10" />
+          <Circle ref={icon2Ref} className="size-12 md:size-16 lg:size-20 border-white/30">
+            <Binary className="text-green-400 size-6 md:size-8 lg:size-10" />
           </Circle>
           
           {/* Icon 3 - Third from top */}
-          <Circle ref={icon3Ref} className="size-16 md:size-20 border-white/30">
-            <BrainCircuit className="text-purple-400 size-8 md:size-10" />
+          <Circle ref={icon3Ref} className="size-12 md:size-16 lg:size-20 border-white/30">
+            <BrainCircuit className="text-purple-400 size-6 md:size-8 lg:size-10" />
           </Circle>
           
           {/* Icon 4 - Bottom (Luminar) */}
-          <Circle ref={icon4Ref} className="size-16 md:size-20 border-white/30 bg-black">
+          <Circle ref={icon4Ref} className="size-12 md:size-16 lg:size-20 border-white/30 bg-black">
             <Image
               src="/luminar.png"
               alt="Luminar"
@@ -93,12 +93,13 @@ export function AnimatedBeamMultipleOutputDemo({
         </div>
       </div>
 
-      {/* Animated Beams - Natural branching pattern */}
+      {/* Animated Beams - Natural branching pattern - Only FROM Bittensor TO other icons */}
       <AnimatedBeam
         containerRef={containerRef}
         fromRef={centralRef}
         toRef={icon1Ref}
         curvature={-80}
+        reverse={false}
         pathColor="rgba(255, 255, 255, 0.7)"
         pathWidth={1.5}
         pathOpacity={0.7}
@@ -110,6 +111,7 @@ export function AnimatedBeamMultipleOutputDemo({
         fromRef={centralRef}
         toRef={icon2Ref}
         curvature={-30}
+        reverse={false}
         pathColor="rgba(255, 255, 255, 0.7)"
         pathWidth={1.5}
         pathOpacity={0.7}
@@ -121,6 +123,7 @@ export function AnimatedBeamMultipleOutputDemo({
         fromRef={centralRef}
         toRef={icon3Ref}
         curvature={30}
+        reverse={false}
         pathColor="rgba(255, 255, 255, 0.7)"
         pathWidth={1.5}
         pathOpacity={0.7}
@@ -132,6 +135,7 @@ export function AnimatedBeamMultipleOutputDemo({
         fromRef={centralRef}
         toRef={icon4Ref}
         curvature={80}
+        reverse={false}
         pathColor="rgba(255, 255, 255, 0.7)"
         pathWidth={1.5}
         pathOpacity={0.7}
