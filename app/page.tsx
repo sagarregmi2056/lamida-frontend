@@ -1,6 +1,5 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Logos from "@/components/Logos";
 import WhatWeDo from "@/components/WhatWeDo";
 import WhyBittensor from "@/components/WhyBittensor";
 import FeaturedWorks from "@/components/FeaturedWorks";
@@ -13,7 +12,6 @@ export default function Home() {
     <main className="relative min-h-screen bg-black overflow-x-hidden">
       <Navigation />
       <Hero />
-      <Logos />
       <WhatWeDo />
       <WhyBittensor />
       <FeaturedWorks />

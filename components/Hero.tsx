@@ -2,21 +2,23 @@ import Link from "next/link";
 import { ChevronRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimatedGradientText } from "./ui/animated-gradient-text";
+import Logos from "@/components/Logos";
+
 
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-8 pt-24 overflow-hidden text-center">
+<section className="relative h-[100vh] flex items-center justify-center px-6 lg:px-8 overflow-hidden text-center">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
-        {/* Dark Mesh Gradients - deep blue and purple glows */}
-        <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-600/30 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
+        {/* Dark Mesh Gradients - deep blue and purple glows*/}
+        <div className="absolute top-[30%] -left-[20%] w-[50%] h-[60%] blur-[120px]  bg-blue-500/70 rounded-full" />
+        <div className="absolute bottom-[-5%] left-[20%] w-[40%] h-[50%] bg-purple-600/60 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] -right-[10%] w-[60%] h-[70%] bg-blue-500/75 blur-[150px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
-          className="absolute inset-0 opacity-[0.12]"
+          className="absolute inset-0 opacity-[0.25]"
           style={{ 
             backgroundImage: 'linear-gradient(rgb(122, 120, 134) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
             backgroundSize: '80px 80px',
@@ -30,7 +32,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center space-y-3 md:space-y-4">
+<div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center space-y-3 md:space-y-4 translate-y-[-20%]">
         
         {/* Badge - AI * Blockchain with Animated Gradient Border */}
         <div className="group relative mx-auto flex items-center justify-center rounded-full px-6 py-2 shadow-[inset_0_-8px_10px_#8fdfff1f] transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f] bg-white/5 backdrop-blur-sm mb-4 md:mb-6">
@@ -88,6 +90,11 @@ export default function Hero() {
             Build with us
           </Link>
         </div>
+      </div>
+
+      {/* Logos at Bottom */}
+<div className="absolute bottom-0 left-0 right-0 w-full mt-16">
+        <Logos />
       </div>
       
     </section>
