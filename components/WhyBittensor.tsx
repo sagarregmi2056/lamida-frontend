@@ -2,9 +2,10 @@
 
 import React, { forwardRef, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { ConnectionLine } from "@/components/ui/custom-connection-line";
+
 import { Coins, Binary, BrainCircuit, ShieldCheck } from "lucide-react";
 import Statistics from "@/components/Statistics";
+import { AnimatedBeamMultipleOutputDemo } from "./animated-beam-multiple";
 
 const Circle = forwardRef<
   HTMLDivElement,
@@ -42,12 +43,14 @@ export default function WhyBittensor() {
         <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
         
-        {/* Grid Pattern Overlay */}
+        {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.12]"
           style={{ 
             backgroundImage: 'linear-gradient(rgb(122, 120, 134) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
-            backgroundSize: '80px 80px' 
+            backgroundSize: '80px 80px',
+            maskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)'
           }}
         />
         
@@ -77,95 +80,7 @@ export default function WhyBittensor() {
             className="relative flex h-[500px] w-full items-center justify-center"
             ref={containerRef}
           >
-
-            <div className="flex w-full max-w-lg items-center justify-between gap-12 relative">
-              {/* Central Node */}
-              <div className="flex flex-col items-center justify-center">
-                <Circle ref={centralRef} className="size-28 md:size-32 border-white/20">
-                   <span className="text-5xl md:text-6xl font-bold text-white italic">T</span>
-                </Circle>
-              </div>
-
-              {/* Right Side Nodes */}
-              {/* 
-                TO REPLACE ICONS:
-                1. Lucide Icons: Import from "lucide-react" (e.g., import { IconName } from "lucide-react")
-                2. Custom SVG: Replace with <svg>...</svg> component
-                3. Images: Use <Image src="/path/to/image.png" /> from "next/image"
-                4. Text/Emoji: Use <span>Your Text</span> or <span>🎯</span>
-              */}
-              <div className="flex flex-col justify-between gap-10 h-full">
-                {/* Icon 1 - Top */}
-                <Circle ref={icon1Ref} className="size-16 md:size-20 border-white/30">
-                  <Coins className="text-orange-400 size-8 md:size-10" />
-                  {/* Replace <Coins /> above with your custom icon */}
-                </Circle>
-                
-                {/* Icon 2 - Second from top */}
-                <Circle ref={icon2Ref} className="size-16 md:size-20 border-white/30">
-                  <Binary className="text-green-400 size-8 md:size-10" />
-                  {/* Replace <Binary /> above with your custom icon */}
-                </Circle>
-                
-                {/* Icon 3 - Third from top */}
-                <Circle ref={icon3Ref} className="size-16 md:size-20 border-white/30">
-                  <BrainCircuit className="text-purple-400 size-8 md:size-10" />
-                  {/* Replace <BrainCircuit /> above with your custom icon */}
-                </Circle>
-                
-                {/* Icon 4 - Bottom */}
-                <Circle ref={icon4Ref} className="size-16 md:size-20 border-white/30">
-                  <ShieldCheck className="text-emerald-400 size-8 md:size-10" />
-                  {/* Replace <ShieldCheck /> above with your custom icon */}
-                </Circle>
-              </div>
-            </div>
-
-            {/* Custom Connection Lines - Natural branching pattern matching Figma */}
-            <ConnectionLine
-              containerRef={containerRef}
-              fromRef={centralRef}
-              toRef={icon1Ref}
-              curvature={-80}
-              color="rgba(255, 255, 255, 0.7)"
-              strokeWidth={1.5}
-              opacity={0.7}
-              animated={true}
-              delay={0}
-            />
-            <ConnectionLine
-              containerRef={containerRef}
-              fromRef={centralRef}
-              toRef={icon2Ref}
-              curvature={-30}
-              color="rgba(255, 255, 255, 0.7)"
-              strokeWidth={1.5}
-              opacity={0.7}
-              animated={true}
-              delay={0.5}
-            />
-            <ConnectionLine
-              containerRef={containerRef}
-              fromRef={centralRef}
-              toRef={icon3Ref}
-              curvature={30}
-              color="rgba(255, 255, 255, 0.7)"
-              strokeWidth={1.5}
-              opacity={0.7}
-              animated={true}
-              delay={1}
-            />
-            <ConnectionLine
-              containerRef={containerRef}
-              fromRef={centralRef}
-              toRef={icon4Ref}
-              curvature={80}
-              color="rgba(255, 255, 255, 0.7)"
-              strokeWidth={1.5}
-              opacity={0.7}
-              animated={true}
-              delay={1.5}
-            />
+            <AnimatedBeamMultipleOutputDemo className="w-full h-full" />
           </div>
         </div>
 

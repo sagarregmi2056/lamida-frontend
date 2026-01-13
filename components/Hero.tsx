@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
+import { AnimatedGradientText } from "./ui/animated-gradient-text";
+
 
 export default function Hero() {
   return (
@@ -13,12 +14,14 @@ export default function Hero() {
         <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
         
-        {/* Grid Pattern Overlay */}
+        {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.12]"
           style={{ 
-            backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)',
-            backgroundSize: '80px 80px' 
+            backgroundImage: 'linear-gradient(rgb(122, 120, 134) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            maskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)'
           }}
         />
         
@@ -43,10 +46,16 @@ export default function Hero() {
               maskComposite: "subtract",
             }}
           />
-          <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
-          <span className="text-base font-bold text-white tracking-wide relative z-10">
+          {/* <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" /> */}
+          {/* <span className="text-base bg-gradient-to-r from-[#ffaa40] via-[rgb(103, 19, 193)] to-[rgb(255, 230, 64)] bg-[length:300%_100%] bg-clip-text text-transparent font-bold text-white tracking-wide relative z-10">
             AI * Blockchain
-          </span>
+          </span> */}
+ <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
+<hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
+    <AnimatedGradientText className="text-lg font-medium">
+      AI * Blockchain
+    </AnimatedGradientText> 
+    <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
         </div>
 
         {/* Main Title */}
