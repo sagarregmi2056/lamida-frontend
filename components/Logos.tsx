@@ -66,15 +66,16 @@ export default function Logos() {
   };
 
   return (
-    <section className="relative z-10 w-full py-16 bg-[#0B1222]/60 backdrop-blur-xl border-y border-white/[0.05]">
+    <section className="relative z-10 w-full py-10 bg-gradient-to-br from-[#0B1222]/40 to-[#1a2a4a]/10 backdrop-blur-xl border-y border-white/[0.05]">
       <div className="container mx-auto px-6">
         {/* Powering Tools Text */}
-        <p className="text-gray-400/80 text-center text-sm md:text-base mb-12 font-medium tracking-wide">
-          Powering Tools and Integrations from companies all over the world
-        </p>
+<p className="text-blue-200/70 text-center text-lg md:text-xl lg:text-2xl mb-8 font-medium tracking-wide">
+  Powering Tools and Integrations from companies all over the world
+</p>
+
 
         {/* Logos Grid */}
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-20 opacity-40">
+        <div className="flex mt-10 flex-wrap items-center justify-center gap-6 md:gap-16 opacity-90">
           {logos.map((logo) => {
             const IconComponent = logo.type === 'icon' ? logo.icon : null;
             const hasError = imageErrors[logo.name];
@@ -82,22 +83,24 @@ export default function Logos() {
             return (
               <div 
                 key={logo.name} 
-                className="flex items-center justify-center grayscale brightness-200 hover:opacity-60 transition-opacity"
+                className="flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
               >
                 {IconComponent ? (
-                  <IconComponent className="h-7 md:h-8 w-7 md:w-8 text-white" />
+                  <IconComponent className="h-9 md:h-12 w-9 md:w-12 text-white" />
                 ) : logo.type === 'image' && logo.src ? (
-                  <div className="relative h-7 md:h-8 w-auto">
+                  <div className="relative h-9 md:h-12 w-auto">
                     {hasError && logo.fallback ? (
                       <div>{logo.fallback}</div>
                     ) : (
                       <Image
                         src={logo.src}
                         alt={logo.alt}
-                        width={32}
-                        height={32}
-                        className="h-7 md:h-8 w-auto object-contain"
+                        width={128}
+                        height={128}
+                        className="h-9 md:h-12 w-auto object-contain"
                         onError={() => handleImageError(logo.name)}
+                        priority
+                        quality={100}
                       />
                     )}
                   </div>
