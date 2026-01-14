@@ -11,22 +11,23 @@ const logos = [
   {
     name: 'Bittensor',
     type: 'image',
-    src: '/trustedpartner/bittensorwhite.png', // Place logo files in public/logos/
+    src: '/trustedpartner/bittensor.svg', // Place logo files in public/logos/
     alt: 'Bittensor',
     fallback: <Network className="h-14 md:h-16 w-14 md:w-14 text-white" />
   },
   {
     name: 'AWS',
     type: 'image',
-    src: '/trustedpartner/aws.png',
+    src: '/trustedpartner/aws.svg',
     alt: 'AWS',
     fallback: <Cloud className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
   {
     name: 'Talisman',
     type: 'image',
-    src: '/trustedpartner/talisman.png',
+    src: '/trustedpartner/talisman.svg',
     alt: 'Talisman wallet',
+    noInvert: true,
     fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
   {
@@ -36,16 +37,24 @@ const logos = [
     alt: 'Wallet'
   },
   {
-    name: 'Polkadot',
+    name:"OpenAI",
     type: 'image',
-    src: '/logos/polkadot.svg',
+    src: '/trustedpartner/openai.svg',
+    alt: 'OpenAI',
+    fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
+  },
+  {
+    name:"Polkadot",
+    type: 'image',
+    src: '/trustedpartner/polkadot.svg',
     alt: 'Polkadot',
-    fallback: <Coins className="h-7 md:h-8 w-7 md:w-8 text-white" />
+    fallback: <Network className="h-7 md:h-8 w-7 md:w-8 text-white" />
+
   },
   {
     name: 'Ethereum',
     type: 'image',
-    src: '/logos/ethereum.svg',
+    src: '/trustedpartner/ethereum.svg',
     alt: 'Ethereum',
     fallback: <Coins className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
@@ -82,9 +91,10 @@ export default function Logos() {
             
             return (
               <div 
-                key={logo.name} 
-                className="flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
-              >
+  key={logo.name} 
+  className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300"
+>
+
                 {IconComponent ? (
                   <IconComponent className="h-9 md:h-12 w-9 md:w-12 text-white" />
                 ) : logo.type === 'image' && logo.src ? (
@@ -97,7 +107,13 @@ export default function Logos() {
                         alt={logo.alt}
                         width={128}
                         height={128}
-                        className="h-9 md:h-12 w-auto object-contain"
+className={`
+  h-9 md:h-12 w-auto object-contain transition-all duration-300
+  ${logo.noInvert 
+    ? 'opacity-80 hover:opacity-100' 
+    : 'filter brightness-0 invert group-hover:filter-none'}
+`}
+
                         onError={() => handleImageError(logo.name)}
                         priority
                         quality={100}

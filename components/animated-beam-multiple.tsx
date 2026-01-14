@@ -48,7 +48,7 @@ export function AnimatedBeamMultipleOutputDemo({
         <div className="flex flex-col items-center justify-center">
           <Circle ref={centralRef} className="size-20 md:size-28 lg:size-32 border-white/20 bg-white">
             <Image
-              src="/trustedpartner/Bittensor_TAO_Logo.png"
+              src="/trustedpartner/bittensor.svg"
               alt="Bittensor"
               width={96}
               height={96}
