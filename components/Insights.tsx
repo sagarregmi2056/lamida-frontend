@@ -11,7 +11,7 @@ const insights = [
     title: "Scaling Bittensor for mass use",
     description: "Exploring the infrastructure, tooling, and network upgrades needed to take Bittensor from a niche protocol to real-world, large-scale adoption across industries.",
     date: "Nov 2, 2025",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop",
+    image: "/img1.png",
     badge: "dTAO",
   },
   {
@@ -19,7 +19,7 @@ const insights = [
     title: "Latest ecosystem changes",
     description: "A quick overview of recent updates in the Bittensor ecosystem, including protocol improvements, governance changes, and community-driven developments.",
     date: "Dec 10, 2025",
-    image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a5b?w=800&h=600&fit=crop",
+    image: "/img2.png",
     badge: "BITTENSOR",
   },
   {
@@ -27,7 +27,7 @@ const insights = [
     title: "New Subnet Registered",
     description: "A newly launched subnet joins the Bittensor network, expanding use cases and opening new opportunities for builders, miners, and validators.",
     date: "Jan 11, 2026",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop",
+    image: "/img3.png",
     badge: null,
   },
   {
@@ -35,7 +35,7 @@ const insights = [
     title: "Required TAO",
     description: "A newly launched subnet joins the Bittensor network, expanding use cases and opening new opportunities for builders, miners, and validators.",
     date: "Jan 11, 2026",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+    image: "/img4.png",
     badge: "TAO",
   },
 ];
