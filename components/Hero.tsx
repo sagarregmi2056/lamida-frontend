@@ -8,7 +8,7 @@ import Logos from "@/components/Logos";
 
 export default function Hero() {
   return (
-<section className="relative h-[100vh] flex items-center justify-center px-6 lg:px-8 overflow-hidden text-center">
+<section className="relative h-[110vh] flex items-center justify-center px-6 lg:px-8 overflow-hidden text-center">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows*/}
