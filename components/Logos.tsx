@@ -31,10 +31,11 @@ const logos = [
     fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
   {
-    name: 'Wallet',
-    type: 'icon',
-    icon: Wallet,
-    alt: 'Wallet'
+    name: 'Solidity',
+    type: 'image',
+    src:'/trustedpartner/solidity.svg',
+    alt: 'Solidity',
+    fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
   {
     name:"OpenAI",
@@ -59,9 +60,16 @@ const logos = [
     fallback: <Coins className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
   {
+    name:'Rust',
+    type: 'image',
+    src: '/trustedpartner/rust.svg',
+    alt: 'Rust',
+    fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
+  },
+  {
     name: 'Substrate',
     type: 'image',
-    src: '/logos/substrate.svg',
+    src: '/trustedpartner/substrate.svg',
     alt: 'Substrate',
     fallback: <Network className="h-7 md:h-8 w-7 md:w-8 text-white" />
   }
@@ -86,7 +94,6 @@ export default function Logos() {
         {/* Logos Grid */}
         <div className="flex mt-10 flex-wrap items-center justify-center gap-6 md:gap-16 opacity-90">
           {logos.map((logo) => {
-            const IconComponent = logo.type === 'icon' ? logo.icon : null;
             const hasError = imageErrors[logo.name];
             
             return (
@@ -95,9 +102,7 @@ export default function Logos() {
   className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300"
 >
 
-                {IconComponent ? (
-                  <IconComponent className="h-9 md:h-12 w-9 md:w-12 text-white" />
-                ) : logo.type === 'image' && logo.src ? (
+                {logo.type === 'image' && logo.src ? (
                   <div className="relative h-9 md:h-12 w-auto">
                     {hasError && logo.fallback ? (
                       <div>{logo.fallback}</div>
