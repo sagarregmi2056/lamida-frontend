@@ -32,15 +32,21 @@ export default function FeaturedWorks() {
     <section className="relative z-10 w-full py-24 bg-black">
        <div 
           className="absolute inset-0 opacity-[0.15]"
-          
+          style={{ 
+            backgroundImage: 'linear-gradient(rgb(82, 79, 99) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
+            backgroundSize: '80px 80px' 
+          }}
         />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4">
-           Past Investors Success
+            What We Offer
           </h2>
+          {/* <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto">
+            A snapshot of domains we've supported across AI, Web3, and frontier technology.
+          </p> */}
         </div>
 
         {/* Projects Grid - Asymmetric Layout */}
@@ -106,4 +112,3 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
     </div>
   );
 }
-
