@@ -38,15 +38,16 @@ export default function WhyBittensor() {
       {/* Background Gradients & Grid Pattern - Matching Hero */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
-        <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-600/30 blur-[120px] rounded-full" />
+        <div className="absolute top-[10%] -left-[10%] w-[50%] h-[60%] bg-blue-600/30 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
+        {/* same as hero below  */}
+        <div className="absolute top-[30%] -right-[-32%] w-[20%] h-[70%] bg-blue-600 blur-[120px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
           className="absolute inset-0 opacity-[0.12]"
           style={{ 
-            backgroundImage: 'linear-gradient(rgb(122, 120, 134) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgb(148, 147, 154) 1px, transparent 1px), linear-gradient(90deg,rgb( 141, 133, 175) 1px, transparent 1px)',
             backgroundSize: '80px 80px',
             maskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
             WebkitMaskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)'
