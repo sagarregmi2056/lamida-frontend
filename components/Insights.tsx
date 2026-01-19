@@ -19,7 +19,7 @@ const insights = [
     title: "Latest ecosystem changes",
     description: "A quick overview of recent updates in the Bittensor ecosystem, including protocol improvements, governance changes, and community-driven developments.",
     date: "Dec 10, 2025",
-    image: "https://images.unsplash.com/photo-1639322537504-6427a16b0a5b?w=800&h=600&fit=crop",
+    image: "https://img.bgstatic.com/multiLang/image/social/fbe7c2071b35ac9f93a65a19bd8ada5f1762283003888.png",
     badge: "BITTENSOR",
   },
   {
