@@ -62,8 +62,8 @@ export function AnimatedBeamMultipleOutputDemo({
           {/* Icon 1 - Top (CheckerChain) */}
           <Circle ref={icon1Ref} className="size-12 md:size-16 lg:size-20 border-white/30 bg-black">
             <Image
-              src="/checkerchain.png"
-              alt="CheckerChain"
+              src="/bitfolio.png"
+              alt="Bitfolio"
               width={48}
               height={48}
               className="h-full w-full object-contain"
@@ -72,19 +72,31 @@ export function AnimatedBeamMultipleOutputDemo({
           
           {/* Icon 2 - Second from top */}
           <Circle ref={icon2Ref} className="size-12 md:size-16 lg:size-20 border-white/30">
-            <Binary className="text-green-400 size-6 md:size-8 lg:size-10" />
+            <Image
+              src="/runningmatrix.png"
+              alt="runningmatrix"
+              width={48}
+              height={48}
+              className="h-full w-full object-contain"
+            />
           </Circle>
           
           {/* Icon 3 - Third from top */}
           <Circle ref={icon3Ref} className="size-12 md:size-16 lg:size-20 border-white/30">
-            <BrainCircuit className="text-purple-400 size-6 md:size-8 lg:size-10" />
+          <Image
+              src="/pixels.png"
+              alt="Pixels"
+              width={56}
+              height={56}
+              className="h-full w-full object-contain"
+            />
           </Circle>
           
           {/* Icon 4 - Bottom (Luminar) */}
           <Circle ref={icon4Ref} className="size-12 md:size-16 lg:size-20 border-white/30 bg-black">
             <Image
-              src="/luminar.png"
-              alt="Luminar"
+              src="/bitmala.png"
+              alt="Bitmala"
               width={48}
               height={48}
               className="h-full w-full object-contain"

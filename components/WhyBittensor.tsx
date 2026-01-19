@@ -4,7 +4,6 @@ import React, { forwardRef, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 import { Coins, Binary, BrainCircuit, ShieldCheck } from "lucide-react";
-import Statistics from "@/components/Statistics";
 import { AnimatedBeamMultipleOutputDemo } from "./animated-beam-multiple";
 
 const Circle = forwardRef<
@@ -83,9 +82,6 @@ export default function WhyBittensor() {
             <AnimatedBeamMultipleOutputDemo className="w-full h-full" />
           </div>
         </div>
-
-        {/* Statistics Section */}
-        <Statistics />
       </div>
     </section>
   );
