@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Video } from "lucide-react";
 
 const navLinks = [
-  { href: "#investors", label: "Investors" },
+  { href: "/investors", label: "Investors" },
   { href: "#buidlers", label: "Buidlers" },
   { href: "#services", label: "Services" },
   { href: "#our-work", label: "Our Work" },
