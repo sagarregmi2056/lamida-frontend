@@ -225,9 +225,9 @@ export default function Statistics() {
       />
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 md:gap-x-8 lg:gap-x-12 gap-y-8">
+        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-8 lg:gap-12 xl:gap-16">
           {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} isVisible={isVisible} />
+            <StatCard key={index} stat={stat} isVisible={isVisible} index={index} />
           ))}
         </div>
       </div>
@@ -235,7 +235,7 @@ export default function Statistics() {
   );
 }
 
-function StatCard({ stat, isVisible }: { stat: StatItem; isVisible: boolean }) {
+function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boolean; index: number }) {
   const animatedValue = useCountUp(stat.value, 2000, isVisible);
 
   const formatNumber = (num: number): string => {
@@ -267,9 +267,9 @@ function StatCard({ stat, isVisible }: { stat: StatItem; isVisible: boolean }) {
   };
 
   return (
-    <div className="flex flex-col items-center md:items-start text-center md:text-left">
+    <div className={`flex flex-col items-center md:items-start text-center md:text-left px-2 md:px-4 lg:px-6 flex-1 ${index === 1 ? 'md:ml-0' : index === 2 ? 'md:ml-4 lg:ml-8 xl:ml-12' : ''}`}>
       <div
-        className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}
+        className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent break-words`}
       >
         {stat.prefix}
         {formatNumber(animatedValue)}
