@@ -4,7 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Clock, Video, ChevronLeft, ChevronRight, Globe } from "lucide-react";
 import Image from "next/image";
 
-export default function BookACall() {
+interface BookACallProps extends React.HTMLAttributes<HTMLElement> {}
+
+export default function BookACall(props: BookACallProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -155,7 +157,7 @@ export default function BookACall() {
   const selectedTimezoneLabel = timeZones.find(tz => tz.value === selectedTimezone)?.label || "Eastern time - US & Canada";
 
   return (
-    <section id="book-call" className="relative w-full py-24 bg-black border-t border-white/10 overflow-hidden">
+    <section {...props} className="relative w-full py-24 bg-black border-t border-white/10 overflow-hidden">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}

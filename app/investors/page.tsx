@@ -30,7 +30,7 @@ import { Map, CodeXml, CloudCheck, Server } from "lucide-react";
           ]}
         />
   <PastInvestorSuccess />
-        <BookACall />
+        <BookACall id="book-a-call" />
 
       <Footer />
     </main>
