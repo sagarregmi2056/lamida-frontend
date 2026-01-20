@@ -20,19 +20,21 @@ const LineSection: React.FC<LineSectionProps> = ({ title, steps }) => {
 
       {/* MOBILE FALLBACK - Hide timeline on small screens */}
       <div className="block md:hidden">
-        <div className="max-w-lg mx-auto px-4">
-          <ul className="space-y-6">
-            {steps.map((step, index) => (
-              <li key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-6 h-6 mt-1 rounded-full border-2 border-white bg-black flex items-center justify-center">
-                  {step.logo}
-                </div>
-                <p className="text-base font-medium">{step.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+  <div className="max-w-lg mx-auto px-4">
+    <ul className="space-y-8">
+      {steps.map((step, index) => (
+        <li key={index} className="flex items-start gap-4">
+          <div className="flex-shrink-0 w-13 h-13 rounded-full bg-blue-700 flex items-center justify-center">
+            {step.logo}
+          </div>
+          <p className="text-base font-medium pt-3 flex-1">
+            {step.description}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
 
       {/* TIMELINE WRAPPER - Hidden on mobile, shown on md+ */}
       <div className="hidden md:block relative max-w-[1800px] mx-auto px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-32 pb-20 md:pb-24 lg:pb-28 xl:pb-32">
