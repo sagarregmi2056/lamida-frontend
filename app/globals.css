@@ -76,6 +76,9 @@ body {
   background-color: rgba(24, 90, 195, 0.3);
   color: #fff;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 /* Animated gradient animation */
 @keyframes gradient {

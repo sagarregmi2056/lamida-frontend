@@ -12,7 +12,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black overflow-x-hidden">
-      <Navigation />
       <Hero />
       <Logos />
       <WhatWeDo />
@@ -20,8 +19,7 @@ export default function Home() {
       <Statistics />
       <FeaturedWorks />
       <Insights />
-      <BookACall />
-      <Footer />
+      <BookACall id ="book-call" />
     </main>
   );
 }
