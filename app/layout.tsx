@@ -15,6 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lamidaglobal.com"),
   title: "Lamida | Invest, Build & Scale on Bittensor",
   description:
     "Lamida partners with investors and builders to accelerate growth on the Bittensor network.",
@@ -83,10 +84,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your verification codes here when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // yahoo: "your-yahoo-verification-code",
+    
   },
 };
 

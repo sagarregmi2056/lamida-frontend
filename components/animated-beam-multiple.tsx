@@ -52,6 +52,7 @@ export function AnimatedBeamMultipleOutputDemo({
               alt="Bittensor"
               width={96}
               height={96}
+              style={{ backgroundColor: "white" }}
               className="h-full w-full object-contain"
             />
           </Circle>
