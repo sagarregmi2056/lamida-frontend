@@ -29,20 +29,20 @@ const cards = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative z-10 w-full py-24 bg-black">
+    <section className="relative z-10 w-full py-24 bg-black ">
       <div className="absolute inset-0 z-[2]">
         {/* <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-purple-600/30 blur-[120px] rounded-full" /> */}
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[150px] rounded-full" /> */}
 
       </div>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 ">
         {/* Section Header */}
         <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white text-center tracking-tight mb-20">
           What We Do
         </h2>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 cursor-pointer ">
           {cards.map((card, index) => (
             <div 
               key={index}

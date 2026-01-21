@@ -55,13 +55,12 @@ const useCountUp = (end: number, duration: number, isVisible: boolean): number =
 export default function Statistics() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [taoData, setTaoData] = useState<TAOData>({
     price: 0,
     volume: 0,
     marketCap: 0,
   });
-  const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,18 +88,21 @@ export default function Statistics() {
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    // Only load once: first time the section becomes visible
+    if (!isVisible || hasLoaded) return;
 
-    // Fallback: Fetch initial data via REST API
     const fetchInitialData = async () => {
       try {
-        const response = await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=TAOUSDT");
+        const response = await fetch(
+          "https://api.binance.com/api/v3/ticker/24hr?symbol=TAOUSDT"
+        );
         const data = await response.json();
-        
-        if (data.lastPrice) {
+
+        if (data.lastPrice && data.volume) {
           const price = parseFloat(data.lastPrice);
-          const volume = parseFloat(data.quoteVolume); // 24h volume in USDT
-          const circulatingSupply = 21000000; // Approximate TAO circulating supply
+          // 24h volume in TAO units (not millions)
+          const volume = parseFloat(data.volume);
+          const circulatingSupply = 21_000_000; // Approximate TAO circulating supply
           const marketCap = price * circulatingSupply;
 
           setTaoData({
@@ -114,77 +116,16 @@ export default function Statistics() {
         // Set default values if API fails
         setTaoData({
           price: 251.34,
-          volume: 129000000,
-          marketCap: 2412033048,
+          volume: 120148, // example fallback TAO volume
+          marketCap: 2_412_033_048,
         });
+      } finally {
+        setHasLoaded(true);
       }
     };
 
     fetchInitialData();
-
-    const connectWebSocket = () => {
-      // Close existing connection if any
-      if (wsRef.current) {
-        wsRef.current.close();
-      }
-
-      // Connect to Binance WebSocket for TAO/USDT ticker
-      const ws = new WebSocket("wss://stream.binance.com:9443/ws/taousdt@ticker");
-      wsRef.current = ws;
-
-      ws.onopen = () => {
-        console.log("Binance WebSocket connected");
-      };
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          
-          // Extract price, volume, and calculate market cap
-          // Market cap = price * circulating supply (approximate: 21M for TAO)
-          const price = parseFloat(data.c);
-          const volume = parseFloat(data.v); // 24h volume in USDT
-          const circulatingSupply = 21000000; // Approximate TAO circulating supply
-          const marketCap = price * circulatingSupply;
-
-          setTaoData({
-            price,
-            volume,
-            marketCap,
-          });
-        } catch (error) {
-          console.error("Error parsing WebSocket data:", error);
-        }
-      };
-
-      ws.onerror = (error) => {
-        console.error("WebSocket error:", error);
-      };
-
-      ws.onclose = () => {
-        console.log("WebSocket closed, reconnecting...");
-        // Reconnect after 3 seconds
-        reconnectTimeoutRef.current = setTimeout(() => {
-          connectWebSocket();
-        }, 3000);
-      };
-    };
-
-    // Small delay before connecting WebSocket to allow REST API to load first
-    const wsTimeout = setTimeout(() => {
-      connectWebSocket();
-    }, 500);
-
-    return () => {
-      if (wsRef.current) {
-        wsRef.current.close();
-      }
-      if (reconnectTimeoutRef.current) {
-        clearTimeout(reconnectTimeoutRef.current);
-      }
-      clearTimeout(wsTimeout);
-    };
-  }, [isVisible]);
+  }, [isVisible, hasLoaded]);
 
   const stats: StatItem[] = [
     {
@@ -195,7 +136,6 @@ export default function Statistics() {
     },
     {
       value: taoData.volume,
-      suffix: "M",
       prefix: "$",
       label: "Today's Volume",
       gradient: "from-blue-400 via-blue-500 to-blue-600",
@@ -239,15 +179,11 @@ function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boole
   const animatedValue = useCountUp(stat.value, 2000, isVisible);
 
   const formatNumber = (num: number): string => {
-    if (num === 0) return "0.00";
+    if (num === 0) return "0";
     
-    if (stat.suffix === "M") {
-      // For volume in millions - show up to 2 decimal places
-      if (num >= 1000000) {
-        const millions = num / 1000000;
-        return millions.toFixed(2);
-      }
-      return num.toFixed(2);
+    if (stat.label === "Today's Volume") {
+      // Show raw TAO volume with commas, no decimals (e.g., 120,148)
+      return Math.floor(num).toLocaleString("en-US");
     }
     
     if (stat.label === "Market Cap") {
