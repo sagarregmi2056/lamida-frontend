@@ -42,7 +42,7 @@ export default function WhatWeDo() {
         </h2>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 cursor-pointer ">
           {cards.map((card, index) => (
             <div 
               key={index}
