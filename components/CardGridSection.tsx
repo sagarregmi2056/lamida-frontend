@@ -12,7 +12,7 @@ export default function CardGridSection({ title, cards }: CardGridSectionProps) 
   return (
     <section className="px-4 sm:px-8 md:px-12 py-10 md:py-20 text-white">
       {/* Heading */}
-      <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight mb-20">
+      <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight mb-20 inline-block z-20 relative">
         {title}
       </h2>
 

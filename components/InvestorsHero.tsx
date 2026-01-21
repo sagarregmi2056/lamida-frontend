@@ -1,18 +1,16 @@
-import Link from "next/link";
-import { ChevronRight, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { AnimatedGradientText } from "./ui/animated-gradient-text";
+
+import WhatWeOffer from "./CardGridSection";
 
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 lg:px-8 pt-24 overflow-hidden text-center">
+    <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-8 pt-24 overflow-hidden text-center">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
-        <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-600/50 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-600/50 blur-[120px] rounded-full" />
+        <div className="absolute top-[15%] -left-[10%] w-[60%] h-[20%] bg-blue-600/50 blur-[120px] rounded-full" />
+        <div className="absolute top-[10%] left-[30%] w-[40%] h-[10%] bg-purple-700/20 blur-[120px] rounded-full" />
+        <div className="absolute top-[30%] -right-[0%] w-[60%] h-[20%] bg-blue-700/70 blur-[130px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
@@ -25,12 +23,10 @@ export default function Hero() {
           }}
         />
         
-        {/* Subtle radial overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center space-y-3 md:space-y-4">
+      <div className="relative z-10 max-w-5xl min-h-[85vh] mx-auto flex flex-col items-center justify-center space-y-3 md:space-y-4">
         
 
         {/* Main Title */}
@@ -40,7 +36,7 @@ export default function Hero() {
 
 
         {/* Description */}
-        <p className="text-white text-base md:text-lg max-w-2xl font-medium tracking-tight pt-2">
+        <p className="text-white text-base md:text-lg max-w-2xl font-medium tracking-tight pt-2 hidden md:block">
           We help investors access high-quality oppurtunities within the Bittensor ecosystem, from early-stage subnets to frontier AI infrastructure.
         </p>
 
@@ -54,6 +50,16 @@ export default function Hero() {
           </a>
         </div>
       </div>
+
+      <WhatWeOffer
+                title="What We Offer Investors"
+                cards={[
+                  { title: "Curated Access to Bittensor Subnets", img: "/investors/1.png" },
+                  { title: "Transparent Performance Insights", img: "/investors/2.png" },
+                  { title: "Due Diligence & technical evaluation", img: "/investors/3.png" },
+                  { title: "Long-term ecosystem alignment", img: "/investors/4.png" }
+                ]}
+              />
       
     </section>
   );
