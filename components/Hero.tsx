@@ -47,9 +47,9 @@ export default function Hero() {
       <div className="absolute inset-0 z-[2]">
         
        
-        <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-purple-600/30 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[150px] rounded-full" />
-        <div className="absolute bottom-[-30%] -right-[6%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-10%] -left-[8%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
+        {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
+        <div className="absolute bottom-[-10%] -right-[8%] w-[40%] h-[60%] bg-blue-700 blur-[150px] rounded-full" />
 
       
         <div 
@@ -62,10 +62,10 @@ export default function Hero() {
           }}
         />
         
-      
+{/*       
 
-        <div className="absolute bottom-[-15%] right-0 w-[50%] h-[50%] bg-blue-600/60 blur-[140px] rounded-full" />
-        <div className="absolute bottom-[-200%] right-[5%] w-[40%] h-[40%] bg-blue-500/50 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[0%] right-0 w-[50%] h-[50%] bg-blue-600/60 blur-[0px] rounded-full" />
+        <div className="absolute bottom-[-200%] right-[5%] w-[40%] h-[40%] bg-blue-500/50 blur-[0px] rounded-full" /> */}
 
       </div>
 

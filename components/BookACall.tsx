@@ -159,9 +159,13 @@ export default function BookACall() {
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
-        <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-600/30 blur-[120px] rounded-full" />
+        {/* <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-blue-600/30 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" /> */}
+             
+             <div className="absolute top-[4%] -left-[-2%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
+        {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
+        <div className="absolute bottom-[-20%] -right-[-2%] w-[40%] h-[60%] bg-blue-700 blur-[120px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
