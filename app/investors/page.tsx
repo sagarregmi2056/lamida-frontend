@@ -19,7 +19,29 @@ import { Map, CodeXml, CloudCheck, Server } from "lucide-react";
             { logo: <CloudCheck size={32} className="text-white" />, description: "Ongoing performance tracking" },
           ]}
         />
-  <PastInvestorSuccess />
+  <PastInvestorSuccess 
+    title="Past Investor Success"
+     card={[
+          {
+            title: "Bittensor Validator",
+            subtitle: "Stake Operations",
+            image: "/whatweoffer/card1.png",
+          },
+          {
+            title: "Subnet Registration",
+            subtitle: "Cost Funding",
+            image: "/whatweoffer/card2.png",
+          },
+          {
+            title: "Subnet Audit/\nConsulting",
+            image: "/whatweoffer/card3.png",
+          },
+          {
+            title: "Taxation",  
+            image: "/whatweoffer/card4.png",
+          },
+        ]}
+  />
         <BookACall  />
 
       <Footer />
