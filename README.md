@@ -16,9 +16,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Cal.com Integration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project includes Cal.com integration for booking meetings. See [CALCOM_INTEGRATION.md](./CALCOM_INTEGRATION.md) for:
+- Environment variable setup
+- API endpoint documentation
+- How to get Event Type IDs
+- Troubleshooting guide
 
 ## Learn More
 

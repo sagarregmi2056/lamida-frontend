@@ -1,65 +1,58 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Clock, Video, ChevronLeft, ChevronRight, Globe } from "lucide-react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
+import { Clock, Video, ChevronLeft, ChevronRight, Globe, Loader2, Mail, CheckCircle2, XCircle } from "lucide-react";
 import Image from "next/image";
+import { getAllTimezones, getUserTimezone, groupTimezonesByRegion, type TimezoneOption } from "@/lib/timezones";
+
+interface EventType {
+  id: number;
+  title: string;
+  slug: string;
+  length: number;
+  locations?: Array<{ type: string; address?: string; displayLocation?: string }>;
+}
+
+interface Slot {
+  time: string;
+  display: string;
+  attendees?: number;
+}
 
 export default function BookACall() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [selectedTimezone, setSelectedTimezone] = useState("America/New_York");
+  const [selectedTimezone, setSelectedTimezone] = useState(getUserTimezone());
   const [isTimezoneOpen, setIsTimezoneOpen] = useState(false);
-
-  // Available dates (example - you can make this dynamic)
-  const availableDates = [16, 17, 19, 22, 23, 24, 25, 30, 31];
+  const [timezoneSearch, setTimezoneSearch] = useState("");
   
-  // Available time slots for selected date
-  const timeSlots = ["10:00am", "11:00am", "1:00pm", "2:30pm", "4:00pm"];
+  // New state for Cal.com integration
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [availableSlots, setAvailableSlots] = useState<Slot[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+  const [loadingBooking, setLoadingBooking] = useState(false);
+  const [eventTypeData, setEventTypeData] = useState<EventType | null>(null);
+  const [availableDates, setAvailableDates] = useState<Set<number>>(new Set());
+  const [loadingEventType, setLoadingEventType] = useState(true);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Calendly-supported time zones (major time zones)
-  const timeZones = [
-    { value: "America/New_York", label: "Eastern time - US & Canada" },
-    { value: "America/Chicago", label: "Central time - US & Canada" },
-    { value: "America/Denver", label: "Mountain time - US & Canada" },
-    { value: "America/Los_Angeles", label: "Pacific time - US & Canada" },
-    { value: "America/Phoenix", label: "Arizona" },
-    { value: "America/Anchorage", label: "Alaska" },
-    { value: "Pacific/Honolulu", label: "Hawaii" },
-    { value: "America/Toronto", label: "Toronto" },
-    { value: "America/Vancouver", label: "Vancouver" },
-    { value: "America/Mexico_City", label: "Mexico City" },
-    { value: "America/Sao_Paulo", label: "Sao Paulo" },
-    { value: "America/Buenos_Aires", label: "Buenos Aires" },
-    { value: "Europe/London", label: "London" },
-    { value: "Europe/Paris", label: "Paris" },
-    { value: "Europe/Berlin", label: "Berlin" },
-    { value: "Europe/Rome", label: "Rome" },
-    { value: "Europe/Madrid", label: "Madrid" },
-    { value: "Europe/Amsterdam", label: "Amsterdam" },
-    { value: "Europe/Stockholm", label: "Stockholm" },
-    { value: "Europe/Dublin", label: "Dublin" },
-    { value: "Europe/Athens", label: "Athens" },
-    { value: "Europe/Moscow", label: "Moscow" },
-    { value: "Asia/Dubai", label: "Dubai" },
-    { value: "Asia/Kolkata", label: "Mumbai, Kolkata, New Delhi" },
-    { value: "Asia/Singapore", label: "Singapore" },
-    { value: "Asia/Hong_Kong", label: "Hong Kong" },
-    { value: "Asia/Shanghai", label: "Beijing, Shanghai" },
-    { value: "Asia/Tokyo", label: "Tokyo" },
-    { value: "Asia/Seoul", label: "Seoul" },
-    { value: "Asia/Bangkok", label: "Bangkok" },
-    { value: "Asia/Jakarta", label: "Jakarta" },
-    { value: "Australia/Sydney", label: "Sydney" },
-    { value: "Australia/Melbourne", label: "Melbourne" },
-    { value: "Australia/Brisbane", label: "Brisbane" },
-    { value: "Pacific/Auckland", label: "Auckland" },
-    { value: "Africa/Johannesburg", label: "Johannesburg" },
-    { value: "Africa/Cairo", label: "Cairo" },
-    { value: "America/Santiago", label: "Santiago" },
-    { value: "America/Lima", label: "Lima" },
-    { value: "America/Bogota", label: "Bogota" },
-  ];
+  // Dynamic timezones
+  const allTimezones = useMemo(() => getAllTimezones(), []);
+  const groupedTimezones = useMemo(() => groupTimezonesByRegion(allTimezones), [allTimezones]);
+  
+  // Filter timezones based on search
+  const filteredTimezones = useMemo(() => {
+    if (!timezoneSearch) return allTimezones;
+    const search = timezoneSearch.toLowerCase();
+    return allTimezones.filter(tz => 
+      tz.label.toLowerCase().includes(search) || 
+      tz.value.toLowerCase().includes(search) ||
+      tz.region.toLowerCase().includes(search)
+    );
+  }, [allTimezones, timezoneSearch]);
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -67,6 +60,234 @@ export default function BookACall() {
   ];
 
   const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+  // Initialize - no API calls needed, just set defaults
+  // Username and eventTypeSlug are read from .env in API routes
+  useEffect(() => {
+    setLoadingEventType(false);
+    setEventTypeData({
+      id: 0,
+      title: "Client Check-in",
+      slug: "",
+      length: 30,
+      locations: [],
+    });
+  }, []);
+
+  // Fetch available dates when month changes
+  // Note: eventTypeId is read from .env in the API route, so we don't need to pass it
+  useEffect(() => {
+    // We can fetch slots without eventTypeId since API route reads it from .env
+
+    const fetchAvailableDates = async () => {
+      try {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        
+        // Ensure we're not requesting dates in the past
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const actualStartDate = firstDay < today ? today : firstDay;
+        
+        // Fetch slots for the entire month (or from today if month started in the past)
+        // v2 API uses startTime and endTime in ISO 8601 format
+        const startTime = actualStartDate.toISOString();
+        const endTime = new Date(lastDay.getTime() + 24 * 60 * 60 * 1000 - 1).toISOString(); // End of last day
+        
+        console.log(`Fetching slots from ${startTime} to ${endTime} for month ${month + 1}/${year}`);
+        
+        const response = await fetch(
+          `/api/cal/slots?startTime=${encodeURIComponent(startTime)}&endTime=${encodeURIComponent(endTime)}`
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Available dates response:", data);
+          
+          // API route now returns: { slots: [...], original: {...} }
+          const slots = data.slots || [];
+          const dates = new Set<number>();
+          
+          // Extract dates from slot objects (which should have ISO time strings)
+          slots.forEach((slot: any) => {
+            // Slot might be a string (ISO time) or an object with time/start property
+            const slotTime = typeof slot === 'string' ? slot : (slot.time || slot.start || slot.startTime);
+            if (!slotTime) {
+              console.warn("Slot missing time:", slot);
+              return;
+            }
+            
+            const slotDate = new Date(slotTime);
+            if (isNaN(slotDate.getTime())) {
+              console.warn("Invalid date for slot:", slotTime);
+              return;
+            }
+            
+            const slotMonth = slotDate.getMonth();
+            const slotYear = slotDate.getFullYear();
+            const slotDay = slotDate.getDate();
+            
+            if (slotMonth === month && slotYear === year) {
+              dates.add(slotDay);
+            }
+          });
+          
+          console.log("Final available dates:", Array.from(dates));
+          
+          // Show helpful message if no slots found
+          if (dates.size === 0 && data.message) {
+            setError("No available slots found. Please check your Cal.com availability settings.");
+          } else if (dates.size === 0) {
+            setError("No available slots found for this month. Please configure availability in Cal.com.");
+          } else {
+            setError(null);
+          }
+          
+          setAvailableDates(dates);
+        } else {
+          // Handle error response
+          const errorData = await response.json().catch(() => ({ error: "Unknown error" }));
+          console.error("Error fetching available dates:", errorData);
+          if (errorData.error?.includes("CALCOM_EVENT_TYPE_ID")) {
+            setError("Please set CALCOM_EVENT_TYPE_ID in .env file");
+          } else {
+            setError(errorData.details || errorData.error || "Failed to load available dates");
+          }
+          setAvailableDates(new Set());
+        }
+      } catch (err) {
+        console.error("Error fetching available dates:", err);
+      }
+    };
+
+    fetchAvailableDates();
+  }, [currentDate, selectedTimezone]);
+
+  // Fetch time slots when date is selected
+  // Note: eventTypeId is read from .env in the API route
+  useEffect(() => {
+    if (!selectedDate) {
+      setAvailableSlots([]);
+      return;
+    }
+
+    const fetchSlots = async () => {
+      try {
+        setLoadingSlots(true);
+        setError(null);
+        
+        // v2 API uses startTime and endTime in ISO 8601 format
+        const startOfDay = new Date(selectedDate);
+        startOfDay.setHours(0, 0, 0, 0);
+        const endOfDay = new Date(selectedDate);
+        endOfDay.setHours(23, 59, 59, 999);
+        
+        const startTime = startOfDay.toISOString();
+        const endTime = endOfDay.toISOString();
+        
+        const response = await fetch(
+          `/api/cal/slots?startTime=${encodeURIComponent(startTime)}&endTime=${encodeURIComponent(endTime)}`
+        );
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ error: "Failed to fetch slots" }));
+          throw new Error(errorData.details || errorData.error || "Failed to fetch slots");
+        }
+        
+        const data = await response.json();
+        console.log("Slots response for selected date:", data);
+        
+        // API route returns: { slots: [...], original: {...} }
+        // Slots are now ISO time strings like "2026-01-24T03:30:00.000Z"
+        const slots = data.slots || [];
+        
+        // Get the selected date in UTC (YYYY-MM-DD format)
+        // Create a UTC date from the selected date to avoid timezone issues
+        const selectedYear = selectedDate.getFullYear();
+        const selectedMonth = selectedDate.getMonth();
+        const selectedDay = selectedDate.getDate();
+        const utcDate = new Date(Date.UTC(selectedYear, selectedMonth, selectedDay));
+        const dateStr = utcDate.toISOString().split('T')[0];
+        
+        console.log(`Selected date: ${selectedYear}-${selectedMonth + 1}-${selectedDay}`);
+        console.log(`Filtering ${slots.length} slots for UTC date: ${dateStr}`);
+        
+        // Filter slots for the selected date and format for display
+        const dateSlots = slots
+          .map((slotTime: any) => {
+            // Slot is now an ISO time string from the API route
+            const timeStr = typeof slotTime === 'string' ? slotTime : (slotTime?.time || slotTime?.start || slotTime?.startTime);
+            if (!timeStr) {
+              console.warn("Slot missing time:", slotTime);
+              return null;
+            }
+            
+            const slotDate = new Date(timeStr);
+            if (isNaN(slotDate.getTime())) {
+              console.warn("Invalid date for slot:", timeStr);
+              return null;
+            }
+            
+            // Check if this slot is for the selected date (compare dates in UTC)
+            const slotDateStr = slotDate.toISOString().split('T')[0];
+            console.log(`Comparing slot date ${slotDateStr} with selected date ${dateStr}`);
+            
+            if (slotDateStr !== dateStr) {
+              return null; // Not for this date
+            }
+            
+            // Format for display (convert UTC to local time for display)
+            const localDate = new Date(slotDate);
+            const hours = localDate.getHours();
+            const minutes = localDate.getMinutes();
+            const displayHours = hours % 12 || 12;
+            const displayMinutes = minutes > 0 ? `:${minutes.toString().padStart(2, '0')}` : '';
+            const ampm = hours >= 12 ? 'pm' : 'am';
+            
+            return {
+              time: timeStr, // Keep original ISO string for booking
+              display: `${displayHours}${displayMinutes}${ampm}`,
+            };
+          })
+          .filter((slot: any) => slot !== null)
+          .sort((a: any, b: any) => {
+            // Sort by time
+            return new Date(a.time).getTime() - new Date(b.time).getTime();
+          });
+        
+        console.log(`Found ${dateSlots.length} slots for ${dateStr}:`, dateSlots);
+        
+        if (dateSlots.length > 0) {
+          setAvailableSlots(dateSlots);
+        } else {
+          setAvailableSlots([]);
+          console.warn(`No slots found for date ${dateStr}. Available slots were for other dates.`);
+          // Show all available slot dates for debugging
+          const allSlotDates = new Set<string>();
+          slots.forEach((slotTime: any) => {
+            const timeStr = typeof slotTime === 'string' ? slotTime : (slotTime?.time || slotTime?.start || slotTime?.startTime);
+            if (timeStr) {
+              const slotDate = new Date(timeStr);
+              if (!isNaN(slotDate.getTime())) {
+                allSlotDates.add(slotDate.toISOString().split('T')[0]);
+              }
+            }
+          });
+          console.log("Available slot dates:", Array.from(allSlotDates).sort());
+        }
+      } catch (err) {
+        console.error("Error fetching slots:", err);
+        setError(err instanceof Error ? err.message : "Failed to load available times");
+        setAvailableSlots([]);
+      } finally {
+        setLoadingSlots(false);
+      }
+    };
+
+    fetchSlots();
+  }, [selectedDate, selectedTimezone]);
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -94,7 +315,7 @@ export default function BookACall() {
       days.push({
         date: day,
         isCurrentMonth: true,
-        isAvailable: availableDates.includes(day),
+        isAvailable: availableDates.has(day),
       });
     }
 
@@ -124,6 +345,73 @@ export default function BookACall() {
       const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
       setSelectedDate(newDate);
       setSelectedTime(null);
+      setAvailableSlots([]);
+      setError(null);
+    }
+  };
+
+  const handleCreateBooking = async () => {
+    if (!selectedDate || !selectedTime || !email) {
+      setError("Please fill in all required fields");
+      return;
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    try {
+      setLoadingBooking(true);
+      setError(null);
+
+      // Find the selected slot's ISO time
+      const selectedSlot = availableSlots.find(slot => slot.time === selectedTime);
+      if (!selectedSlot) {
+        setError("Selected time slot not found");
+        return;
+      }
+
+      const startTime = selectedSlot.time;
+
+      const response = await fetch("/api/cal/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          startTime,
+          name: name || "",
+          email,
+          timeZone: selectedTimezone, // IANA timezone (e.g., "America/New_York")
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.details || errorData.error || "Failed to create booking");
+      }
+
+      const data = await response.json();
+      setBookingSuccess(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSelectedDate(null);
+        setSelectedTime(null);
+        setEmail("");
+        setName("");
+        setBookingSuccess(false);
+        setAvailableSlots([]);
+        setAvailableDates(new Set());
+      }, 3000);
+    } catch (err) {
+      console.error("Error creating booking:", err);
+      setError(err instanceof Error ? err.message : "Failed to create booking");
+    } finally {
+      setLoadingBooking(false);
     }
   };
 
@@ -152,7 +440,7 @@ export default function BookACall() {
     };
   }, []);
 
-  const selectedTimezoneLabel = timeZones.find(tz => tz.value === selectedTimezone)?.label || "Eastern time - US & Canada";
+  const selectedTimezoneLabel = allTimezones.find(tz => tz.value === selectedTimezone)?.label || selectedTimezone;
 
   return (
     <section id="book-call" className="relative w-full py-24 bg-black border-t border-white/10 overflow-hidden">
@@ -227,26 +515,52 @@ export default function BookACall() {
                 {/* Meeting Type Info */}
                 <div className="mb-6">
                   <h3 className="text-white font-semibold mb-3 text-sm">Meeting Type</h3>
-                  <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/10">
-                    <h4 className="text-white font-semibold mb-2 text-base">Client Check-in</h4>
-                    <div className="flex items-center gap-4 text-gray-400 text-sm">
-                      <div className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>30 min</span>
+                  {loadingEventType ? (
+                    <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/10 animate-pulse">
+                      <div className="h-5 bg-gray-700/50 rounded w-3/4 mb-3"></div>
+                      <div className="h-4 bg-gray-700/50 rounded w-1/2"></div>
+                    </div>
+                  ) : error && error.includes("event types") ? (
+                    <div className="p-4 rounded-xl border border-red-500/30 bg-red-500/10">
+                      <div className="flex items-center gap-2 text-red-400 text-sm">
+                        <XCircle className="w-4 h-4" />
+                        <span>{error}</span>
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <Video className="w-3.5 h-3.5" />
-                        <span>Zoom</span>
+                      <p className="text-gray-400 text-xs mt-2">
+                        Check console for details. Make sure CALCOM_API_KEY is set in .env
+                      </p>
+                    </div>
+                  ) : eventTypeData ? (
+                    <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/10">
+                      <h4 className="text-white font-semibold mb-2 text-base">{eventTypeData.title}</h4>
+                      <div className="flex items-center gap-4 text-gray-400 text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>{eventTypeData.length} min</span>
+                        </div>
+                        {eventTypeData.locations && eventTypeData.locations.length > 0 && (
+                          <div className="flex items-center gap-1.5">
+                            <Video className="w-3.5 h-3.5" />
+                            <span>
+                              {eventTypeData.locations[0].type === "integrations:zoom" 
+                                ? "Zoom" 
+                                : eventTypeData.locations[0].displayLocation || eventTypeData.locations[0].type}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Placeholder lines for additional info */}
-                <div className="space-y-2 mt-6">
-                  <div className="h-2 bg-gray-800/50 rounded w-3/4"></div>
-                  <div className="h-2 bg-gray-800/50 rounded w-1/2"></div>
-                  <div className="h-2 bg-gray-800/50 rounded w-5/6"></div>
+                  ) : (
+                    <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/10">
+                      <h4 className="text-white font-semibold mb-2 text-base">Client Check-in</h4>
+                      <div className="flex items-center gap-4 text-gray-400 text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span>30 min</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -340,25 +654,47 @@ export default function BookACall() {
                     </button>
                     
                     {isTimezoneOpen && (
-                      <div className="absolute bottom-full left-0 right-0 mb-2 max-h-60 overflow-y-auto rounded-lg border border-white/10 bg-[#0A0A0A] shadow-xl z-50 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
-                        {timeZones.map((tz) => (
-                          <button
-                            key={tz.value}
-                            onClick={() => {
-                              setSelectedTimezone(tz.value);
-                              setIsTimezoneOpen(false);
-                            }}
-                            className={`
-                              w-full text-left px-4 py-2.5 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg
-                              ${selectedTimezone === tz.value
-                                ? "bg-blue-500/20 text-white"
-                                : "text-gray-300 hover:bg-white/5"
-                              }
-                            `}
-                          >
-                            {tz.label}
-                          </button>
-                        ))}
+                      <div className="absolute bottom-full left-0 right-0 mb-2 max-h-60 overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] shadow-xl z-50 flex flex-col">
+                        {/* Search input */}
+                        <div className="p-2 border-b border-white/10">
+                          <input
+                            type="text"
+                            placeholder="Search timezone..."
+                            value={timezoneSearch}
+                            onChange={(e) => setTimezoneSearch(e.target.value)}
+                            className="w-full px-3 py-2 rounded-lg bg-[#0D0D0D] border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500/50"
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                        {/* Timezone list */}
+                        <div className="overflow-y-auto max-h-48 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+                          {filteredTimezones.length > 0 ? (
+                            filteredTimezones.map((tz) => (
+                              <button
+                                key={tz.value}
+                                onClick={() => {
+                                  setSelectedTimezone(tz.value);
+                                  setIsTimezoneOpen(false);
+                                  setTimezoneSearch("");
+                                }}
+                                className={`
+                                  w-full text-left px-4 py-2.5 text-sm transition-colors
+                                  ${selectedTimezone === tz.value
+                                    ? "bg-blue-500/20 text-white"
+                                    : "text-gray-300 hover:bg-white/5"
+                                  }
+                                `}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span>{tz.label}</span>
+                                  <span className="text-xs text-gray-500">{tz.offset}</span>
+                                </div>
+                              </button>
+                            ))
+                          ) : (
+                            <div className="px-4 py-2.5 text-sm text-gray-500">No timezones found</div>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -369,40 +705,129 @@ export default function BookACall() {
             {/* Right Panel - Time Slots */}
             <div className="lg:col-span-1 p-6">
               <div className="h-full flex flex-col">
+                {error && !bookingSuccess && (
+                  <div className="bg-yellow-900/30 border border-yellow-500/50 text-yellow-300 p-3 rounded-lg mb-4 text-sm">
+                    <XCircle className="inline-block w-4 h-4 mr-2" />
+                    {error}
+                    <div className="mt-2 text-xs text-yellow-400/80">
+                      💡 Check your Cal.com settings: Event Type → Availability → Working Hours
+                    </div>
+                  </div>
+                )}
                 {selectedDate ? (
                   <>
                     <div className="text-white font-medium mb-4 text-sm">
                       {formatSelectedDate(selectedDate)}
                     </div>
-                    <div className="space-y-2">
-                      {timeSlots.map((time) => {
-                        const isSelected = selectedTime === time;
-                        return (
-                          <div key={time} className="flex items-center gap-2">
-                            <button
-                              onClick={() => setSelectedTime(time)}
-                              className={`
-                                flex-1 py-3 px-4 rounded-lg border text-sm font-medium transition-all
-                                ${
-                                  isSelected
-                                    ? "bg-blue-500/30 border-blue-500/50 text-white"
-                                    : "bg-[#0A0A0A] border-blue-500/50 text-gray-300 hover:bg-blue-500/10"
-                                }
-                              `}
-                            >
-                              {time}
-                            </button>
-                            {isSelected && (
-                              <button
-                                className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-medium text-sm transition-colors"
-                              >
-                                Confirm
-                              </button>
-                            )}
+                    
+                    {/* Loading state */}
+                    {loadingSlots ? (
+                      <div className="flex items-center justify-center py-8">
+                        <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
+                      </div>
+                    ) : availableSlots.length > 0 ? (
+                      <>
+                        <div className="mb-4">
+                          <p className="text-gray-400 text-xs mb-3">Select a time</p>
+                          <div className="grid grid-cols-3 gap-2 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent pr-1">
+                            {availableSlots.map((slot) => {
+                              const isSelected = selectedTime === slot.time;
+                              return (
+                                <button
+                                  key={slot.time}
+                                  onClick={() => {
+                                    setSelectedTime(slot.time);
+                                    setError(null);
+                                  }}
+                                  className={`
+                                    py-2.5 px-2 rounded-lg border text-xs font-medium transition-all cursor-pointer
+                                    ${
+                                      isSelected
+                                        ? "bg-blue-500 border-blue-500 text-white shadow-lg shadow-blue-500/20"
+                                        : "bg-[#0A0A0A] border-white/10 text-gray-300 hover:bg-blue-500/10 hover:border-blue-500/30"
+                                    }
+                                  `}
+                                >
+                                  {slot.display}
+                                </button>
+                              );
+                            })}
                           </div>
-                        );
-                      })}
-                    </div>
+                        </div>
+
+                        {/* Booking form - show when time is selected */}
+                        {selectedTime && (
+                          <div className="space-y-4 mt-auto pt-4 border-t border-white/10">
+                            <div>
+                              <label className="text-gray-400 text-sm mb-2 block">
+                                Your Name <span className="text-gray-500 text-xs">(optional)</span>
+                              </label>
+                              <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="John Doe"
+                                className="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-[#0A0A0A] text-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50"
+                              />
+                            </div>
+                            
+                            <div>
+                              <label className="text-gray-400 text-sm mb-2 block">
+                                Your Email <span className="text-red-400">*</span>
+                              </label>
+                              <div className="relative">
+                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                <input
+                                  type="email"
+                                  value={email}
+                                  onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setError(null);
+                                  }}
+                                  placeholder="john.doe@example.com"
+                                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-white/10 bg-[#0A0A0A] text-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            {error && !bookingSuccess && (
+                              <div className="flex items-start gap-2 text-red-400 text-xs bg-red-900/20 border border-red-500/30 p-2 rounded-lg">
+                                <XCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                                <span>{error}</span>
+                              </div>
+                            )}
+
+                            {bookingSuccess && (
+                              <div className="flex items-start gap-2 text-green-400 text-xs bg-green-900/20 border border-green-500/30 p-2 rounded-lg">
+                                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                                <span>Booking confirmed! Check your email for details.</span>
+                              </div>
+                            )}
+
+                            {/* Confirm button */}
+                            <button
+                              onClick={handleCreateBooking}
+                              disabled={loadingBooking || !email}
+                              className="w-full py-3 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed enabled:cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30"
+                            >
+                              {loadingBooking ? (
+                                <>
+                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                  <span>Booking...</span>
+                                </>
+                              ) : (
+                                "Confirm Booking"
+                              )}
+                            </button>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-gray-500 text-sm">
+                        No available times for this date
+                      </div>
+                    )}
                   </>
                 ) : (
                   <div className="text-gray-500 text-sm">
