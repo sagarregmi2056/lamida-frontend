@@ -4,7 +4,7 @@ import WhatWeOffer from "./CardGridSection";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-8 pt-24 overflow-hidden text-center">
+  <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-8 pt-24 text-center">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
@@ -26,7 +26,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl min-h-[85vh] mx-auto flex flex-col items-center justify-center space-y-3 md:space-y-4">
+      <div className="relative z-10 max-w-5xl min-h-[95vh] mx-auto flex flex-col items-center justify-center space-y-3 md:space-y-4">
         
 
         {/* Main Title */}
@@ -50,7 +50,7 @@ export default function Hero() {
           </a>
         </div>
       </div>
-
+          <div className="relative z-20 -mt-32 mb-20">
       <WhatWeOffer
                 title="What We Offer Investors"
                 cards={[
@@ -60,6 +60,7 @@ export default function Hero() {
                   { title: "Long-term ecosystem alignment", img: "/investors/4.png" }
                 ]}
               />
+      </div>
       
     </section>
   );

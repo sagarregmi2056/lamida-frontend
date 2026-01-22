@@ -23,6 +23,7 @@ export default function CardGridSection({ title, cards }: CardGridSectionProps) 
             <div
               key={card.title}
               className="
+              group
                 w-full
                 max-w-[617px]
                 h-[260px] sm:h-[320px] md:h-[356px]
@@ -33,10 +34,13 @@ export default function CardGridSection({ title, cards }: CardGridSectionProps) 
                 flex
                 flex-col
                 mx-auto
+                 transition-all
+                duration-300
+                 hover:border-white/20 hover:bg-[#0D0D0D]
               "
             >
-              <div className="h-32 sm:h-40 md:h-44 bg-black-200 flex items-center justify-center mb-4 sm:mb-6">
-                <img src={card.img} alt={card.title} className="h-full max-h-full object-contain" />
+              <div className="h-32 sm:h-40 md:h-44 bg-black-200 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-black/20 transition-colors duration-500">
+                <img src={card.img} alt={card.title} className="h-full max-h-full object-contain group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"/>
               </div>
 
               <h3 className="text-base sm:text-lg md:text-xl font-semibold text-center mt-auto">
