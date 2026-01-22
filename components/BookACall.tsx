@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Clock, Video, ChevronLeft, ChevronRight, Globe, Loader2, Mail, CheckCircle2, XCircle } from "lucide-react";
 import Image from "next/image";
 import { getAllTimezones, getUserTimezone, groupTimezonesByRegion, type TimezoneOption } from "@/lib/timezones";
+import Toast, { type ToastType } from "./Toast";
 
 interface EventType {
   id: number;
@@ -38,6 +39,7 @@ export default function BookACall() {
   const [loadingEventType, setLoadingEventType] = useState(true);
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: ToastType } | null>(null);
 
   // Dynamic timezones
   const allTimezones = useMemo(() => getAllTimezones(), []);
@@ -396,6 +398,10 @@ export default function BookACall() {
 
       const data = await response.json();
       setBookingSuccess(true);
+      setToast({
+        message: "Booking confirmed! Check your email for details.",
+        type: "success",
+      });
       
       // Reset form after 3 seconds
       setTimeout(() => {
@@ -409,7 +415,12 @@ export default function BookACall() {
       }, 3000);
     } catch (err) {
       console.error("Error creating booking:", err);
-      setError(err instanceof Error ? err.message : "Failed to create booking");
+      const errorMessage = err instanceof Error ? err.message : "Failed to create booking";
+      setError(errorMessage);
+      setToast({
+        message: errorMessage,
+        type: "error",
+      });
     } finally {
       setLoadingBooking(false);
     }
@@ -798,13 +809,6 @@ export default function BookACall() {
                               </div>
                             )}
 
-                            {bookingSuccess && (
-                              <div className="flex items-start gap-2 text-green-400 text-xs bg-green-900/20 border border-green-500/30 p-2 rounded-lg">
-                                <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                                <span>Booking confirmed! Check your email for details.</span>
-                              </div>
-                            )}
-
                             {/* Confirm button */}
                             <button
                               onClick={handleCreateBooking}
@@ -839,6 +843,15 @@ export default function BookACall() {
           </div>
         </div>
       </div>
+      
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
     </section>
   );
 }
