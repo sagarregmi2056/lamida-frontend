@@ -18,7 +18,29 @@ export default function Home() {
       <WhatWeDo />
       <WhyBittensor />
       <Statistics />
-      <FeaturedWorks />
+      <FeaturedWorks 
+        title="Featured Works"
+        card={[
+          {
+            title: "Bittensor Validator",
+            subtitle: "Stake Operations",
+            image: "/whatweoffer/card1.png",
+          },
+          {
+            title: "Subnet Registration",
+            subtitle: "Cost Funding",
+            image: "/whatweoffer/card2.png",
+          },
+          {
+            title: "Subnet Audit/\nConsulting",
+            image: "/whatweoffer/card3.png",
+          },
+          {
+            title: "Taxation",  
+            image: "/whatweoffer/card4.png",
+          },
+        ]}
+      />
       <Insights />
       <BookACall />
       <Footer />

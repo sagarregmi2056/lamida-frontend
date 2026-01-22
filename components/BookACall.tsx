@@ -20,6 +20,7 @@ interface Slot {
   attendees?: number;
 }
 
+
 export default function BookACall() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
