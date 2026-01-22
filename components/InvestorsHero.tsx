@@ -43,7 +43,7 @@ export default function Hero() {
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 md:pt-10">
           <a
-            href="#book-a-call"
+            href="#book-call"
             className="w-full sm:w-auto px-10 py-2.5 bg-blue-700 hover:bg-blue-600 text-white rounded-xl font-bold text-lg transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
           >
             Invest with us

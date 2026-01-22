@@ -44,13 +44,8 @@ export default function Navigation() {
           {/* Desktop Book a Call Button */}
           <div className="hidden md:block">
             <Link
-<<<<<<< HEAD
-              href="#book-a-call"
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-medium text-sm transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
-=======
               href="#book-call"
               className="flex items-center gap-2 px-7 py-3 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-semibold text-base transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
->>>>>>> main
             >
               <Video className="w-4 h-4" />
               Book a Call
