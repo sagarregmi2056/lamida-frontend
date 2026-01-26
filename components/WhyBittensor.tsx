@@ -71,7 +71,7 @@ export default function WhyBittensor() {
               The Bittensor network enables the Decentralized era of scalable, AI-accelerated applications.
             </h3>
             <p className="text-gray-400 text-base md:text-lg leading-relaxed italic">
-              <span className="font-bold text-white not-italic">LAMIDA</span> is built for this ecosystem-leveraging its subnet, Yuma consensus, and blockchain architecture to empower AI products with real-world traction and long-term durability.
+              <span className="font-bold text-white not-italic">LAMIDA</span> is built for this ecosystem-leveraging its speed, modularity, and interoperability to architect products with real-world traction and long-term durability.
             </p>
           </div>
 

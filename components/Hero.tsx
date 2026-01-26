@@ -47,9 +47,12 @@ export default function Hero() {
       <div className="absolute inset-0 z-[2]">
         
        
-        <div className="absolute bottom-[-2%] -left-[8%] w-[50%] h-[60%] bg-blue-600/50 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-2%] -left-[8%] w-[50%] h-[60%] bg-[#4A3BD1] blur-[150px] rounded-full" />
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
-        <div className="absolute bottom-[-2%] -right-[8%] w-[50%] h-[60%] bg-blue-700 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-2%] -right-[8%] w-[50%] h-[60%] bg-[#1D5BFF] blur-[150px] rounded-full" />
+        
+
+        <div className="absolute top-[58%] -right-[-10%] w-[10%] h-[10%] bg-blue-600 blur-[100px] rounded-full" />
 
       
         <div 
@@ -90,15 +93,15 @@ export default function Hero() {
           />
          
  <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
-<hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
-    <AnimatedGradientText className="text-[20.22px] font-medium">
+{/* <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" /> */}
+    <AnimatedGradientText className="text-sm sm:text-base md:text-[20.22px] font-medium">
       Artificial Intelligence * Blockchain
     </AnimatedGradientText> 
     {/* <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" /> */}
         </div>
 
      
-        <h1 className="text-[120px] md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1] text-white">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[120px] font-extrabold tracking-tight leading-[1.1] text-white whitespace-nowrap overflow-hidden">
           <TypingText text="Invest, Build & Scale" />
         </h1>
 
@@ -147,13 +150,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 md:pt-10">
           <Link
             href="#invest"
-            className="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-[20.22px] transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
+            className="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl  text-[20.22px] transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
           >
             Invest with us
           </Link>
           <Link
             href="#build"
-            className="w-full sm:w-auto px-10 py-3.5 bg-blue-800/60 hover:bg-blue-800/80 text-white rounded-xl font-bold text-[20.22px] border border-white/10 transition-all transform hover:scale-[1.02]"
+            className="w-full sm:w-auto px-10 py-3.5 bg-blue-800/60 hover:bg-blue-800/80 text-white rounded-xl text-[20.22px] border border-white/10 transition-all transform hover:scale-[1.02]"
           >
             Build with us
           </Link>
