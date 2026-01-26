@@ -16,13 +16,15 @@ const projects = [
     image: "/whatweoffer/card2.png",
   },
   {
-    title: "Subnet Audit/\nConsulting",
+    title: "Subnet Consulting",
+    subtitle: "Subnet Outsourcing",
     image: "/whatweoffer/card3.png",
     imageFit: "object-contain",
     imagePosition: "object-center",
   },
   {
-    title: "Taxation",
+    title: "Crypto Taxation",
+    subtitle: "Accounting and Taxation",
     image: "/whatweoffer/card4.png",
   },
 ];

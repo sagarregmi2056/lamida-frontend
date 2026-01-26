@@ -25,18 +25,18 @@ const logos = [
   {
     name: 'Talisman',
     type: 'image',
-    src: '/trustedpartner/talisman.svg',
+    src: '/trustedpartner/talisman2.png',
     alt: 'Talisman wallet',
     noInvert: true,
     fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
   },
-  {
-    name: 'Solidity',
-    type: 'image',
-    src:'/trustedpartner/solidity.svg',
-    alt: 'Solidity',
-    fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
-  },
+  // {
+  //   name: 'Solidity',
+  //   type: 'image',
+  //   src:'/trustedpartner/solidity.svg',
+  //   alt: 'Solidity',
+  //   fallback: <Code className="h-7 md:h-8 w-7 md:w-8 text-white" />
+  // },
   {
     name:"OpenAI",
     type: 'image',
@@ -52,13 +52,13 @@ const logos = [
     fallback: <Network className="h-7 md:h-8 w-7 md:w-8 text-white" />
 
   },
-  {
-    name: 'Ethereum',
-    type: 'image',
-    src: '/trustedpartner/ethereum.svg',
-    alt: 'Ethereum',
-    fallback: <Coins className="h-7 md:h-8 w-7 md:w-8 text-white" />
-  },
+  // {
+  //   name: 'Ethereum',
+  //   type: 'image',
+  //   src: '/trustedpartner/ethereum.svg',
+  //   alt: 'Ethereum',
+  //   fallback: <Coins className="h-7 md:h-8 w-7 md:w-8 text-white" />
+  // },
   {
     name:'Rust',
     type: 'image',

@@ -92,9 +92,9 @@ export default function Hero() {
  <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
 <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
     <AnimatedGradientText className="text-lg font-medium">
-      AI * Blockchain
+      Artificial Intelligence * Blockchain
     </AnimatedGradientText> 
-    <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+    {/* <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" /> */}
         </div>
 
      
@@ -106,7 +106,7 @@ export default function Hero() {
         <p className="text-3xl md:text-5xl font-light text-gray-200/90 max-w-3xl leading-snug">
           on the{" "}
           <span className="relative whitespace-nowrap inline-block">
-            <motion.svg
+            {/* <motion.svg
               aria-hidden="true"
               viewBox="0 0 418 42"
               className="absolute left-0 top-[0.85em] fill-white"
@@ -133,14 +133,14 @@ export default function Hero() {
                 fill="none"
                 stroke="#ffffff"
               />
-            </motion.svg>
+            </motion.svg> */}
             <span className="relative">Bittensor Network</span>
           </span>
         </p>
 
         {/* Description */}
         <p className="text-gray-400 text-base md:text-lg max-w-2xl font-medium tracking-tight pt-2">
-          Backed by deep Bittensor expertise and a builder-first ecosystem approach.
+        Backed by bittensor expertise for Bittensor-only ecosystem approach.
         </p>
 
       

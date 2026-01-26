@@ -92,9 +92,9 @@ export default function Footer() {
                 href="mailto:admin@lamidacrypto.com" 
                 className="block hover:text-white transition-colors"
               >
-                admin@lamidacrypto.com
+                lamidaglobal@gmail.com
               </a>
-              <p className="text-white/80">10th street, Wyoming, USA</p>
+              <p className="text-white/80"> W. 2nd St #2327, Casper, Wyoming</p>
             </div>
 
             {/* Copyright */}

@@ -7,21 +7,21 @@ const cards = [
   {
     title: 'For Investors',
     subtitle: 'Invest in High-Conviction Frontier Subnets',
-    description: 'We identify, validate, and co-build scalable ventures on the Bittensor network, helping TAO ecosystem.',
+    description: 'We invest, crowdfund and lead fundraise for Bittensor related ventures, funding TAO ecosystem.',
     image: '/image 338.png',
     color: 'from-blue-500/10 to-purple-500/10'
   },
   {
     title: 'For Builders',
     subtitle: 'Accelerate Your Product from Idea to Subnets',
-    description: 'We identify, validate, and co-build scalable ventures on the Tensor network, helping...',
+    description: 'We identify, incubate and co-build scalable subnets on the Bittensor network, building TAO ecosystem.',
     image: '/image 341.png',
     color: 'from-emerald-500/10 to-blue-500/10'
   },
   {
     title: 'Services',
     subtitle: 'End to End Outsourcing for Subnet Needs',
-    description: 'We identify, validate, and co-build scalable ventures on the Tensor network, helping...',
+    description: 'We develop subnets, design incentive mechanisms (IM), run miners and validators, servicing TAO ecosystem.',
     image: '/image 339.png',
     color: 'from-blue-500/10 to-emerald-500/10'
   }
