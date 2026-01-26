@@ -47,9 +47,9 @@ export default function Hero() {
       <div className="absolute inset-0 z-[2]">
         
        
-        <div className="absolute bottom-[-10%] -left-[8%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] -left-[8%] w-[50%] h-[62%] bg-violet-600/50 blur-[120px] rounded-full" />
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
-        <div className="absolute bottom-[-10%] -right-[8%] w-[40%] h-[60%] bg-blue-700 blur-[150px] rounded-full" />
+        <div className="absolute bottom-[-10%] -right-[8%] w-[50%] h-[62%] bg-blue-700 blur-[150px] rounded-full" />
 
       
         <div 
