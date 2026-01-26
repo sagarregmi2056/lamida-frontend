@@ -34,7 +34,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white/90 hover:text-white transition-colors text-base font-semibold"
+                className="text-white/90 hover:text-white transition-colors text-[22.32px] font-semibold"
               >
                 {link.label}
               </Link>
@@ -84,7 +84,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/90 hover:text-white transition-colors text-base font-semibold"
+                  className="text-white/90 hover:text-white transition-colors text-[22.32px] font-semibold"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

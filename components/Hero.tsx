@@ -91,14 +91,14 @@ export default function Hero() {
          
  <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
 <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" />
-    <AnimatedGradientText className="text-lg font-medium">
+    <AnimatedGradientText className="text-[20.22px] font-medium">
       Artificial Intelligence * Blockchain
     </AnimatedGradientText> 
     {/* <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" /> */}
         </div>
 
      
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1] text-white">
+        <h1 className="text-[120px] font-extrabold tracking-tight leading-[1.1] text-white">
           <TypingText text="Invest, Build & Scale" />
         </h1>
 
@@ -147,7 +147,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 md:pt-10">
           <Link
             href="#invest"
-            className="w-full sm:w-auto px-10 py-3.5 bg-blue-700 hover:bg-blue-600 text-white rounded-xl font-bold transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
+            className="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
           >
             Invest with us
           </Link>
