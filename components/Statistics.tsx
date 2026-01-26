@@ -151,23 +151,28 @@ export default function Statistics() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full py-16 mt-20"
+      className="relative w-full py-10 sm:py-14 md:py-16 mt-10 sm:mt-14 md:mt-20"
     >
       {/* Grid Pattern - Same as Hero */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.12]"
-        style={{ 
-          backgroundImage: 'linear-gradient(rgb(99, 97, 112) 1px, transparent 1px), linear-gradient(90deg,rgb(104, 105, 116) 1px, transparent 1px)',
+        style={{
+          backgroundImage:
+            'linear-gradient(rgb(99, 97, 112) 1px, transparent 1px), linear-gradient(90deg,rgb(104, 105, 116) 1px, transparent 1px)',
           backgroundSize: '80px 80px',
-          maskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgb(228, 220, 220) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)'
+          maskImage:
+            'radial-gradient(ellipse 150% 200% at 50% 0%, rgb(228, 220, 220) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
+          WebkitMaskImage:
+            'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
         }}
       />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-start gap-8 md:gap-8 lg:gap-12 xl:gap-16">
+
+      <div className="container mx-auto px-3 sm:px-4 md:px-1 relative z-10">
+          <div className="flex flex-col md:flex-row md:items-start gap-4 sm:gap-6 md:gap-6 lg:gap-7 xl:gap-10 rounded-xl p-4 sm:p-6 md:p-1 bg-black/30 backdrop-blur-sm">
           {stats.map((stat, index) => (
-            <StatCard key={index} stat={stat} isVisible={isVisible} index={index} />
+            <div key={index} className="flex-1 min-w-0">
+              <StatCard key={index} stat={stat} isVisible={isVisible} index={index} />
+            </div>
           ))}
         </div>
       </div>
@@ -180,12 +185,12 @@ function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boole
 
   const formatNumber = (num: number): string => {
     if (num === 0) return "0";
-    
+
     if (stat.label === "Today's Volume") {
       // Show raw TAO volume with commas, no decimals (e.g., 120,148)
       return Math.floor(num).toLocaleString("en-US");
     }
-    
+
     if (stat.label === "Market Cap") {
       // For market cap, format with commas
       if (num >= 1000000000) {
@@ -197,24 +202,32 @@ function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boole
       }
       return num.toLocaleString("en-US", { maximumFractionDigits: 2 });
     }
-    
+
     // For price, show 2 decimal places
     return num.toFixed(2);
   };
 
   return (
-    <div className={`flex flex-col items-center md:items-start text-center md:text-left px-2 md:px-4 lg:px-6 flex-1 ${index === 1 ? 'md:ml-0' : index === 2 ? 'md:ml-4 lg:ml-8 xl:ml-12' : ''}`}>
+    <div
+      className={`flex flex-col items-center md:items-start text-center md:text-left w-full h-full ${
+        index === 1 ? ' md:px-4 lg:px-6' : 
+        index === 2 ? 'md:pl-4 lg:pl-6' : 
+        'md:pr-4 lg:pr-6'
+      }`}
+    >
       <div
-        className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent break-words`}
+        className={`font-bold mb-1 md:mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent break-all md:break-words
+          text-2xl xs:text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl
+          ${stat.label === "Market Cap" ? 'text-lg xs:text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl' : ''}`}
       >
         {stat.prefix}
         {formatNumber(animatedValue)}
         {stat.suffix}
       </div>
-      <p className="text-gray-400 text-sm md:text-base font-medium">
+      <p className="text-gray-400 font-medium w-full
+        text-xs xs:text-sm sm:text-base md:text-sm lg:text-base">
         {stat.label}
       </p>
     </div>
   );
 }
-
