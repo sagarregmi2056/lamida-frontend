@@ -95,7 +95,7 @@ export default function Hero() {
  <Sparkles className="w-4 h-4 text-white mr-2 relative z-10" />
 {/* <hr className="mx-2 h-4 w-px shrink-0 bg-neutral-500" /> */}
     <AnimatedGradientText className="text-sm sm:text-base md:text-[20.22px] font-medium">
-      Artificial Intelligence * Blockchain
+      AI X Blockchain
     </AnimatedGradientText> 
     {/* <ChevronRight className="ml-1 size-4 stroke-neutral-500 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" /> */}
         </div>
