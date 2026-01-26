@@ -107,7 +107,7 @@ export default function BookACall() {
         
         if (response.ok) {
           const data = await response.json();
-          console.log("Available dates response:", data);
+          // console.log("Available dates response:", data);
           
           // API route now returns: { slots: [...], original: {...} }
           const slots = data.slots || [];
@@ -137,7 +137,7 @@ export default function BookACall() {
             }
           });
           
-          console.log("Final available dates:", Array.from(dates));
+          // console.log("Final available dates:", Array.from(dates));
           
           // Show helpful message if no slots found
           if (dates.size === 0 && data.message) {

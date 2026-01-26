@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("Cal.com API error:", errorText);
+      // console.error("Cal.com API error:", errorText);
       return NextResponse.json(
         { error: "Failed to fetch slots", details: errorText },
         { status: response.status }
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
     }
 
     const data = await response.json();
-    console.log("Cal.com v2 slots/available response:", JSON.stringify(data, null, 2));
+    // console.log("Cal.com v2 slots/available response:", JSON.stringify(data, null, 2));
     
     let slots = [];
     if (Array.isArray(data)) {
@@ -96,18 +96,18 @@ export async function GET(request: NextRequest) {
       });
     }
     
-    console.log(`Extracted ${slots.length} slots from response`);
+    // console.log(`Extracted ${slots.length} slots from response`);
     
     // If no slots found, provide helpful message
-    if (slots.length === 0) {
-      console.warn("⚠️ No available slots found. This usually means:");
-      console.warn("1. No availability is configured in Cal.com for these dates");
-      console.warn("2. Working hours are not set up for this event type");
-      console.warn("3. The event type might not be enabled/published");
-      console.warn("4. All slots in this range might be already booked");
-      console.warn(`Date range: ${startTime} to ${endTime}`);
-      console.warn(`Event Type ID: ${eventTypeId}`);
-    }
+    // if (slots.length === 0) {
+    //   console.warn("⚠️ No available slots found. This usually means:");
+    //   console.warn("1. No availability is configured in Cal.com for these dates");
+    //   console.warn("2. Working hours are not set up for this event type");
+    //   console.warn("3. The event type might not be enabled/published");
+    //   console.warn("4. All slots in this range might be already booked");
+    //   console.warn(`Date range: ${startTime} to ${endTime}`);
+    //   console.warn(`Event Type ID: ${eventTypeId}`);
+    // }
     
     return NextResponse.json({
       slots,
@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
         : undefined
     });
   } catch (error) {
-    console.error("Cal.com API error:", error);
+    // console.error("Cal.com API error:", error);
     return NextResponse.json(
       { 
         error: "Failed to fetch available slots", 
