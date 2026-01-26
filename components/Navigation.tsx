@@ -45,7 +45,7 @@ export default function Navigation() {
           <div className="hidden md:block">
             <Link
               href="#book-call"
-              className="flex items-center gap-2 px-7 py-3 bg-blue-700 hover:bg-[#2563eb] text-white rounded-xl font-semibold text-base transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
+              className="flex items-center gap-2 px-7 py-3 bg-blue-700 hover:bg-[#2563eb] text-white rounded-xl font-semibold text-[20.22px] transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
             >
               <Video className="w-4 h-4" />
               Book a Call
@@ -92,7 +92,7 @@ export default function Navigation() {
               ))}
               <Link
                 href="#book-call"
-                className="flex items-center justify-center gap-2 px-7 py-3 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-semibold text-base transition-all duration-200 shadow-lg shadow-blue-500/20"
+                className="flex items-center justify-center gap-2 px-7 py-3 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-semibold text-[20.22px] transition-all duration-200 shadow-lg shadow-blue-500/20"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Video className="w-4 h-4" />
