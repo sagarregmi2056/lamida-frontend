@@ -32,11 +32,13 @@ export default function Home() {
             image: "/whatweoffer/card2.png",
           },
           {
-            title: "Subnet Audit/\nConsulting",
+            title: "SubnetConsulting",
+            subtitle: "Subnet Outsourcing",
             image: "/whatweoffer/card3.png",
           },
           {
-            title: "Taxation",  
+            title: "Crypto Taxation",  
+            subtitle: "Accounting and Taxation",
             image: "/whatweoffer/card4.png",
           },
         ]}

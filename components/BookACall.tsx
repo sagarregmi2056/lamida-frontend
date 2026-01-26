@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Clock, Video, ChevronLeft, ChevronRight, Globe, Loader2, Mail, CheckCircle2, XCircle } from "lucide-react";
 import Image from "next/image";
-import { getAllTimezones, getUserTimezone, groupTimezonesByRegion, type TimezoneOption } from "@/lib/timezones";
+import { getAllTimezones, groupTimezonesByRegion, type TimezoneOption } from "@/lib/timezones";
 import Toast, { type ToastType } from "./Toast";
 
 interface EventType {
@@ -25,7 +25,7 @@ export default function BookACall() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [selectedTimezone, setSelectedTimezone] = useState(getUserTimezone());
+  const [selectedTimezone, setSelectedTimezone] = useState("America/New_York");
   const [isTimezoneOpen, setIsTimezoneOpen] = useState(false);
   const [timezoneSearch, setTimezoneSearch] = useState("");
   
