@@ -7,7 +7,7 @@ import { Video } from "lucide-react";
 
 const navLinks = [
   { href: "/investors", label: "Investors" },
-  { href: "#buidlers", label: "Buidlers" },
+  { href: "#builders", label: "Builders" },
   { href: "#services", label: "Services" },
   { href: "#our-work", label: "Our Work" },
   { href: "#about", label: "About" },
