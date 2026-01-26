@@ -147,13 +147,13 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 md:pt-10">
           <Link
             href="#invest"
-            className="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
+            className="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-[20.22px] transition-all transform hover:scale-[1.02] shadow-xl shadow-blue-900/30"
           >
             Invest with us
           </Link>
           <Link
             href="#build"
-            className="w-full sm:w-auto px-10 py-3.5 bg-blue-800/60 hover:bg-blue-800/80 text-white rounded-xl font-bold border border-white/10 transition-all transform hover:scale-[1.02]"
+            className="w-full sm:w-auto px-10 py-3.5 bg-blue-800/60 hover:bg-blue-800/80 text-white rounded-xl font-bold text-[20.22px] border border-white/10 transition-all transform hover:scale-[1.02]"
           >
             Build with us
           </Link>
