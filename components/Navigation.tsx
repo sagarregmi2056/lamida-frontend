@@ -18,15 +18,19 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-2 border-white/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/20">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex flex-col items-start justify-center gap-1">
             <div className="w-11 h-11 bg-blue-500 rounded-lg flex items-center justify-center">
               <Image src="/logo.png" alt="Lamida" width={110} height={110} />
             </div>
+            <span className="text-white font-semibold text-sm tracking-wide">
+              Lamida
+            </span>
           </Link>
+         
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-9">

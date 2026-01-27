@@ -718,11 +718,12 @@ const handleCreateBooking = async () => {
             <div className="lg:col-span-1 p-6">
               <div className="h-full flex flex-col">
                 {error && !bookingSuccess && (
-                  <div className="bg-yellow-900/30 border border-yellow-500/50 text-yellow-300 p-3 rounded-lg mb-4 text-sm">
-                    <XCircle className="inline-block w-4 h-4 mr-2" />
-                    {error}
-                    <div className="mt-2 text-xs text-yellow-400/80">
-                      💡 Check your Cal.com settings: Event Type → Availability → Working Hours
+                  <div className="bg-red-900/20 border border-red-500/40 text-red-200 p-3 rounded-lg mb-4 text-sm">
+                    <div className="flex items-start gap-2">
+                      <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p>We’re having trouble loading available times right now. Please try again in a few minutes.</p>
+                      </div>
                     </div>
                   </div>
                 )}
