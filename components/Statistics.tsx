@@ -70,6 +70,10 @@ export default function Statistics() {
           if (entry.isIntersecting) {
             console.log("✅ Section is now visible!");
             setIsVisible(true);
+            // Stop observing after first visibility so animation only triggers once
+            if (sectionRef.current) {
+              observer.unobserve(sectionRef.current);
+            }
           }
         });
       },
@@ -86,17 +90,10 @@ export default function Statistics() {
       console.warn("⚠️ sectionRef.current is null");
     }
 
-    // Fallback: if observer doesn't trigger within 2 seconds, set visible anyway
-    const fallbackTimer = setTimeout(() => {
-      console.log("⏰ Fallback: Setting visible after 2 seconds (observer may not have triggered)");
-      setIsVisible(true);
-    }, 2000);
-
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
-      clearTimeout(fallbackTimer);
     };
   }, []);
 
@@ -248,7 +245,7 @@ function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boole
       } py-4`}
     >
       <div
-        className={`font-bold mb-1 md:mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent break-all md:break-words
+        className={`font-bold mb-1 md:mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent whitespace-nowrap
           text-4xl xs:text-5xl sm:text-6xl md:text-3xl lg:text-4xl xl:text-5xl
           ${stat.label === "Market Cap" ? 'text-3xl xs:text-4xl sm:text-5xl md:text-xl lg:text-2xl xl:text-3xl' : ''}`}
       >
