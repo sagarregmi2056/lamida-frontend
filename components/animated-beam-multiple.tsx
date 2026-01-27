@@ -46,13 +46,13 @@ export function AnimatedBeamMultipleOutputDemo({
       <div className="flex w-full md:max-w-9xl flex-row items-center justify-between gap-16 md:gap-58 lg:gap-94">
         {/* Central Node - Left Side */}
         <div className="flex flex-col items-center justify-center">
-          <Circle ref={centralRef} className="size-20 md:size-28 lg:size-32 border-white/20 bg-white">
+          <Circle ref={centralRef} className="size-20 md:size-24 lg:size-28 border-white-500/10 bg-black">
             <Image
-              src="/trustedpartner/bittensor.svg"
+              src="/trustedpartner/bittensor2.png"
               alt="Bittensor"
-              width={96}
-              height={96}
-              style={{ backgroundColor: "white" }}
+              width={80}
+              height={80}
+              style={{ backgroundColor: "black" }}
               className="h-full w-full object-contain"
             />
           </Circle>
@@ -60,11 +60,11 @@ export function AnimatedBeamMultipleOutputDemo({
 
         {/* Right Side Nodes - 4 Icons */}
         <div className="flex flex-col justify-between gap-4 md:gap-10 h-full">
-          {/* Icon 1 - Top (CheckerChain) */}
+          {/* Icon 1 - Top (Lamida) */}
           <Circle ref={icon1Ref} className="size-12 md:size-16 lg:size-20 border-white/30 bg-black">
             <Image
-              src="/bitfolio.png"
-              alt="Bitfolio"
+              src="/logo.png"
+              alt="Lamida"
               width={48}
               height={48}
               className="h-full w-full object-contain"

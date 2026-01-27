@@ -42,7 +42,7 @@ const insights = [
 
 export default function Insights() {
   return (
-    <section className="relative z-10 w-full py-24 bg-black">
+    <section className="relative z-10 w-full py-10 bg-black">
        <div 
           className="absolute inset-0 opacity-[0.15]"
           style={{ 

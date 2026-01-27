@@ -353,8 +353,8 @@ export default function BookACall() {
     }
   };
 
-  const handleCreateBooking = async () => {
-    if (!selectedDate || !selectedTime || !email) {
+const handleCreateBooking = async () => {
+    if (!selectedDate || !selectedTime || !email || !name.trim()) {
       setError("Please fill in all required fields");
       return;
     }
@@ -386,7 +386,7 @@ export default function BookACall() {
         },
         body: JSON.stringify({
           startTime,
-          name: name || "",
+          name: name.trim(),
           email,
           timeZone: selectedTimezone, // IANA timezone (e.g., "America/New_York")
         }),
@@ -455,7 +455,7 @@ export default function BookACall() {
   const selectedTimezoneLabel = allTimezones.find(tz => tz.value === selectedTimezone)?.label || selectedTimezone;
 
   return (
-    <section id="book-call" className="relative w-full py-24 bg-black border-t border-white/10 overflow-hidden">
+    <section id="book-call" className="relative w-full py-14 bg-black border-t border-white/10 overflow-hidden">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
@@ -772,12 +772,15 @@ export default function BookACall() {
                           <div className="space-y-4 mt-auto pt-4 border-t border-white/10">
                             <div>
                               <label className="text-gray-400 text-sm mb-2 block">
-                                Your Name <span className="text-gray-500 text-xs">(optional)</span>
+                                Your Name <span className="text-red-400">*</span>
                               </label>
                               <input
                                 type="text"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => {
+                                  setName(e.target.value);
+                                  setError(null);
+                                }}
                                 placeholder="John Doe"
                                 className="w-full px-4 py-2.5 rounded-lg border border-white/10 bg-[#0A0A0A] text-white text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50"
                               />
@@ -813,7 +816,7 @@ export default function BookACall() {
                             {/* Confirm button */}
                             <button
                               onClick={handleCreateBooking}
-                              disabled={loadingBooking || !email}
+                              disabled={loadingBooking || !email || !name.trim()}
                               className="w-full py-3 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed enabled:cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30"
                             >
                               {loadingBooking ? (

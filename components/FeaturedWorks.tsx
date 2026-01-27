@@ -17,7 +17,7 @@ interface FeaturedWorksProps {
 
  const FeaturedWorks:React.FC<FeaturedWorksProps>=({ title, card }) => {
   return (
-    <section className="relative z-10 w-full py-24 bg-black">
+    <section className="relative z-10 w-full py-10 bg-black">
        <div 
           className="absolute inset-0 opacity-[0.15]"
           style={{ 
@@ -84,9 +84,9 @@ function ProjectCard({ project, index }: { project: CardInfo; index: number }) {
       {/* Content */}
       <div className="relative z-30 h-full flex flex-col justify-end p-8 md:p-10">
         <div className="max-w-xs md:max-w-sm">
-          <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-300/80 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-300/80 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Services
-          </p>
+          </p> */}
           <h3 className="whitespace-pre-line text-2xl md:text-3xl lg:text-4xl font-semibold md:font-bold text-white tracking-tight mb-1">
             {project.title}
           </h3>

@@ -143,7 +143,7 @@ export default function Hero() {
 
         {/* Description */}
         <p className="text-gray-400 text-[18px] max-w-2xl font-medium tracking-tight pt-2">
-        Backed by bittensor expertise for Bittensor-only ecosystem approach.
+        Backed by Bittensor expertise for Bittensor-only ecosystem approach.
         </p>
 
       

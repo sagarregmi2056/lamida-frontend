@@ -166,19 +166,19 @@ export default function Statistics() {
       value: taoData.price,
       prefix: "$",
       label: "TAO Current Price",
-      gradient: "from-purple-400 via-purple-500 to-purple-600",
+      gradient: "from-purple-400 via-purple-500/50 to-purple-600/50",
     },
     {
       value: taoData.volume,
       prefix: "$",
       label: "Today's Volume",
-      gradient: "from-blue-400 via-blue-500 to-blue-600",
+      gradient: "from-blue-400 via-blue-500 to-blue-600/50",
     },
     {
       value: taoData.marketCap,
       prefix: "$",
       label: "Market Cap",
-      gradient: "from-green-400 via-green-500 to-green-600",
+      gradient: "from-green-400 via-green-500 to-green-600/50",
     },
   ];
 
@@ -188,18 +188,13 @@ export default function Statistics() {
       className="relative w-full py-10 sm:py-14 md:py-16 mt-10 sm:mt-14 md:mt-20"
     >
       {/* Grid Pattern - Same as Hero */}
-      <div
-        className="absolute inset-0 opacity-[0.12]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgb(99, 97, 112) 1px, transparent 1px), linear-gradient(90deg,rgb(104, 105, 116) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-          maskImage:
-            'radial-gradient(ellipse 150% 200% at 50% 0%, rgb(228, 220, 220) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 150% 200% at 50% 0%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 60%, transparent 80%)',
-        }}
-      />
+      <div 
+          className="absolute inset-0 opacity-[0.15]"
+          style={{ 
+            backgroundImage: 'linear-gradient(rgb(82, 79, 99) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
+            backgroundSize: '80px 80px' 
+          }}
+        />
 
       <div className="container mx-auto px-3 sm:px-4 md:px-1 relative z-10">
           <div className="flex flex-col md:flex-row md:items-start gap-4 sm:gap-6 md:gap-6 lg:gap-7 xl:gap-10 rounded-xl p-4 sm:p-6 md:p-1 bg-black/30 backdrop-blur-sm">

@@ -8,14 +8,14 @@ const cards = [
     title: 'For Investors',
     subtitle: 'Invest in High-Conviction Frontier Subnets',
     description: 'We invest, crowdfund and lead fundraise for Bittensor related ventures, funding TAO ecosystem.',
-    image: '/image 338.png',
-    color: 'from-blue-500/10 to-purple-500/10'
+    image: '/card1.png',
+    color: 'from--500/10 to-black-500/10'
   },
   {
     title: 'For Builders',
     subtitle: 'Accelerate Your Product from Idea to Subnets',
     description: 'We identify, incubate and co-build scalable subnets on the Bittensor network, building TAO ecosystem.',
-    image: '/image 341.png',
+    image: '/card2.webp',
     color: 'from-emerald-500/10 to-blue-500/10'
   },
   {
@@ -29,8 +29,8 @@ const cards = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative z-10 w-full py-24 bg-black ">
-      <div className="absolute inset-0 z-[2]">
+    <section className="relative z-10 w-full py-10 bg-black ">
+      <div className="absolute inset-0 z-[2] pointer-events-none">
         {/* <div className="absolute top-[20%] -left-[10%] w-[50%] h-[60%] bg-purple-600/30 blur-[120px] rounded-full" /> */}
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[150px] rounded-full" /> */}
 
@@ -46,16 +46,15 @@ export default function WhatWeDo() {
           {cards.map((card, index) => (
             <div 
               key={index}
-              className="group relative flex flex-col bg-[#0A0A0A] border border-white/10 rounded-[40px] p-10 transition-all duration-500 hover:border-white/20 hover:bg-[#0D0D0D]"
+              className="group relative flex flex-col bg-[#0A0A0A] border-2 border-white/20 rounded-[40px] p-10 transition-all duration-500 hover:border-white/30 hover:bg-[#0D0D0D]"
             >
               {/* Image Container */}
-              <div className={`relative w-full aspect-[4/3] rounded-3xl mb-10 overflow-hidden bg-gradient-to-br ${card.color} flex items-center justify-center border border-white/5`}>
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+              <div className={`relative w-full aspect-[4/3] rounded-3xl mb-10 overflow-hidden bg-gradient-to-br ${card.color}`}>
                 <Image 
                   src={card.image}
                   alt={card.title}
                   fill
-                  className="object-contain p-6 relative z-10 opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  className="object-cover relative z-10 opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
               </div>
 
