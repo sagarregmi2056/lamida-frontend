@@ -455,7 +455,7 @@ const handleCreateBooking = async () => {
   const selectedTimezoneLabel = allTimezones.find(tz => tz.value === selectedTimezone)?.label || selectedTimezone;
 
   return (
-    <section id="book-call" className="relative w-full py-14 bg-black border-t border-white/40 overflow-hidden">
+    <section id="book-call" className="relative w-full py-14 bg-black overflow-hidden">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}
@@ -465,7 +465,7 @@ const handleCreateBooking = async () => {
              
              <div className="absolute top-[4%] -left-[-2%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
-        <div className="absolute bottom-[-20%] -right-[-2%] w-[40%] h-[60%] bg-blue-700 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-20%] -right-[-2%] w-[40%] h-[60%] bg-blue-700 blur-[200px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
@@ -479,7 +479,7 @@ const handleCreateBooking = async () => {
         />
         
         {/* Subtle radial overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" /> */}
       </div>
 
       <div className="relative z-10 container mx-auto px-6">

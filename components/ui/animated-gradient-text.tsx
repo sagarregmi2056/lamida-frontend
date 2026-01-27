@@ -10,7 +10,7 @@ export function AnimatedGradientText({
   className?: string;
 }) {
   return (
-    <div className="group relative text-white mx-auto flex items-center justify-center  px-4 py-1.5  ">
+    <div className="group relative text-white mx-auto flex items-center justify-center  px-6 py-1.0  ">
    
 
     {children}
