@@ -185,7 +185,7 @@ export default function Statistics() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full py-10 sm:py-14 md:py-16 mt-10 sm:mt-14 md:mt-20"
+      className="relative w-full py-12 sm:py-14 md:py-16 mt-0 sm:mt-14 md:mt-20 min-h-[60vh] flex items-center"
     >
       {/* Grid Pattern - Same as Hero */}
       <div 
@@ -197,7 +197,7 @@ export default function Statistics() {
         />
 
       <div className="container mx-auto px-3 sm:px-4 md:px-1 relative z-10">
-          <div className="flex flex-col md:flex-row md:items-start gap-4 sm:gap-6 md:gap-6 lg:gap-7 xl:gap-10 rounded-xl p-4 sm:p-6 md:p-1 bg-black/30 backdrop-blur-sm">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 sm:gap-6 md:gap-6 lg:gap-7 xl:gap-10 rounded-xl min-h-[260px] sm:min-h-[320px] p-6 sm:p-7 md:p-1 bg-black/30 backdrop-blur-sm">
           {stats.map((stat, index) => (
             <div key={index} className="flex-1 min-w-0">
               <StatCard key={index} stat={stat} isVisible={isVisible} index={index} />
@@ -245,19 +245,19 @@ function StatCard({ stat, isVisible, index }: { stat: StatItem; isVisible: boole
         index === 1 ? ' md:px-4 lg:px-6' : 
         index === 2 ? 'md:pl-4 lg:pl-6' : 
         'md:pr-4 lg:pr-6'
-      }`}
+      } py-4`}
     >
       <div
         className={`font-bold mb-1 md:mb-2 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent break-all md:break-words
-          text-2xl xs:text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl
-          ${stat.label === "Market Cap" ? 'text-lg xs:text-xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl' : ''}`}
+          text-4xl xs:text-5xl sm:text-6xl md:text-3xl lg:text-4xl xl:text-5xl
+          ${stat.label === "Market Cap" ? 'text-3xl xs:text-4xl sm:text-5xl md:text-xl lg:text-2xl xl:text-3xl' : ''}`}
       >
         {stat.prefix}
         {formatNumber(animatedValue)}
         {stat.suffix}
       </div>
-      <p className="text-gray-400 font-medium w-full
-        text-xs xs:text-sm sm:text-base md:text-sm lg:text-base">
+      <p className="text-gray-400 font-medium w-full mt-2
+        text-sm xs:text-sm sm:text-lg md:text-sm lg:text-base">
         {stat.label}
       </p>
     </div>

@@ -71,7 +71,7 @@ function InsightCard({ insight }: { insight: typeof insights[0] }) {
   return (
     <Link 
       href={`/insights/${insight.id}`}
-      className="group relative flex flex-col h-full rounded-3xl overflow-hidden border border-white/20 bg-[#0A0A0A] hover:border-white/20 hover:bg-[#0D0D0D] transition-all duration-500"
+      className="group relative flex flex-col h-full rounded-3xl overflow-hidden border-2 border-white/20 bg-[#0A0A0A] hover:border-white/20 hover:bg-[#0D0D0D] transition-all duration-500"
     >
       {/* Image Container */}
       <div className="relative w-full aspect-[4/3] overflow-hidden">
@@ -87,7 +87,7 @@ function InsightCard({ insight }: { insight: typeof insights[0] }) {
         {/* Badge if exists */}
         {insight.badge && (
           <div className="absolute top-4 left-4 z-10">
-            <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white text-sm font-bold">
+            <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-lg text-white text-sm font-bold">
               {insight.badge}
             </span>
           </div>

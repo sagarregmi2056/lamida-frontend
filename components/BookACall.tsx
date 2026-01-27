@@ -463,9 +463,9 @@ const handleCreateBooking = async () => {
         <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-purple-700/20 blur-[120px] rounded-full" />
         <div className="absolute bottom-[-20%] -right-[10%] w-[60%] h-[70%] bg-blue-700/40 blur-[150px] rounded-full" /> */}
              
-             <div className="absolute top-[4%] -left-[-2%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
+             <div className="absolute top-[30%] -left-[-2%] w-[40%] h-[60%] bg-violet-600/50 blur-[120px] rounded-full" />
         {/* <div className="absolute bottom-[-10%] left-[20%] w-[40%] h-[50%] bg-black-700/20 blur-[0px] rounded-full" /> */}
-        <div className="absolute bottom-[-20%] -right-[-2%] w-[40%] h-[60%] bg-blue-700 blur-[200px] rounded-full" />
+        <div className="absolute bottom-[-30%] -right-[-2%] w-[40%] h-[60%] bg-blue-700 blur-[100px] rounded-full" />
         
         {/* Grid Pattern Overlay - Visible from top center, fades as light blue gradient appears */}
         <div 
@@ -479,7 +479,7 @@ const handleCreateBooking = async () => {
         />
         
         {/* Subtle radial overlay for depth */}
-        {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" /> */}
+        {/* <div className="absolute bottom-[100%] inset-0 bg-gradient-to-b from-black via-transparent to-black" /> */}
       </div>
 
       <div className="relative z-10 container mx-auto px-6">

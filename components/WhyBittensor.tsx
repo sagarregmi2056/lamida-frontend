@@ -34,7 +34,7 @@ export default function WhyBittensor() {
   const icon4Ref = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative w-full py-10 overflow-hidden">
+    <section className="relative w-full pt-10 pb-4 md:py-10 overflow-hidden">
       {/* Background Gradients & Grid Pattern - Matching Hero */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}

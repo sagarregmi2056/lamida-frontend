@@ -18,7 +18,7 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-2 border-white/20">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-28">
           {/* Logo */}
@@ -78,13 +78,13 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden pb-6 border-t border-white/10 mt-4 pt-4">
+          <div className="md:hidden pb-6 border-t border-white/10 mt-4 pt-4 bg-black">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/90 hover:text-white transition-colors text-[22.32px] "
+                  className="text-white hover:text-white transition-colors text-[22.32px]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
