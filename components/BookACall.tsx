@@ -455,7 +455,7 @@ const handleCreateBooking = async () => {
   const selectedTimezoneLabel = allTimezones.find(tz => tz.value === selectedTimezone)?.label || selectedTimezone;
 
   return (
-    <section id="book-call" className="relative w-full py-14 bg-black border-t border-white/10 overflow-hidden">
+    <section id="book-call" className="relative w-full py-14 bg-black border-t border-white/40 overflow-hidden">
       {/* Background Gradients & Effects */}
       <div className="absolute inset-0 z-0">
         {/* Dark Mesh Gradients - deep blue and purple glows */}

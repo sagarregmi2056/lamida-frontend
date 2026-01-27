@@ -42,7 +42,7 @@ const insights = [
 
 export default function Insights() {
   return (
-    <section className="relative z-10 w-full py-10 bg-black">
+    <section className="relative z-10 w-full py-10 bg-black ">
        <div 
           className="absolute inset-0 opacity-[0.15]"
           style={{ 
@@ -71,7 +71,7 @@ function InsightCard({ insight }: { insight: typeof insights[0] }) {
   return (
     <Link 
       href={`/insights/${insight.id}`}
-      className="group relative flex flex-col h-full rounded-3xl overflow-hidden border border-white/10 bg-[#0A0A0A] hover:border-white/20 hover:bg-[#0D0D0D] transition-all duration-500"
+      className="group relative flex flex-col h-full rounded-3xl overflow-hidden border border-white/20 bg-[#0A0A0A] hover:border-white/20 hover:bg-[#0D0D0D] transition-all duration-500"
     >
       {/* Image Container */}
       <div className="relative w-full aspect-[4/3] overflow-hidden">
