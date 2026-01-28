@@ -13,6 +13,9 @@ const words = [
     text: "Invest",
   },
   {
+    text: ",",
+  },
+  {
     text: "Build",
   },
   {
@@ -89,7 +92,7 @@ export default function Hero() {
         </div>
 
      
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[120px] font-extrabold tracking-tight leading-[1.1] text-white whitespace-nowrap overflow-hidden">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[150px] font-extrabold tracking-tight leading-[1.1] text-white whitespace-nowrap overflow-hidden">
         <TypewriterEffectSmooth className="text-white" words={words} />
         </h1>
 
