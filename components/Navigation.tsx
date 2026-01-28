@@ -22,15 +22,9 @@ export default function Navigation() {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-<<<<<<< HEAD
           <Link href="/" className="flex flex-col items-start justify-center gap-1">
             <div className="w-11 h-11 bg-blue-500 rounded-lg flex items-center justify-center">
               <Image src="/logo.png" alt="Lamida" width={110} height={110} />
-=======
-          <Link href="/" className="flex items-center">
-            <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-              <Image src="/logo.png" alt="Lamida" width={100} height={100} />
->>>>>>> feature/about-page
             </div>
             <span className="text-white font-semibold text-sm tracking-wide">
               Lamida
@@ -44,11 +38,7 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-<<<<<<< HEAD
                 className="text-white/90 hover:text-white transition-colors text-[22.32px] "
-=======
-                className="text-white/90 hover:text-white transition-colors text-sm font-medium"
->>>>>>> feature/about-page
               >
                 {link.label}
               </Link>
@@ -59,11 +49,7 @@ export default function Navigation() {
           <div className="hidden md:block">
             <Link
               href="#book-call"
-<<<<<<< HEAD
               className="flex items-center gap-2 px-7 py-3 bg-blue-700 hover:bg-[#2563eb] text-white rounded-xl  text-[20.22px] transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
-=======
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-medium text-sm transition-all duration-200 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
->>>>>>> feature/about-page
             >
               <Video className="w-4 h-4" />
               Book a Call
@@ -102,11 +88,7 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-<<<<<<< HEAD
                   className="text-white hover:text-white transition-colors text-[22.32px]"
-=======
-                  className="text-white/90 hover:text-white transition-colors text-sm font-medium"
->>>>>>> feature/about-page
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -114,11 +96,7 @@ export default function Navigation() {
               ))}
               <Link
                 href="#book-call"
-<<<<<<< HEAD
                 className="flex items-center justify-center gap-2 px-7 py-3 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-semibold text-[20.22px] transition-all duration-200 shadow-lg shadow-blue-500/20"
-=======
-                className="flex items-center justify-center gap-2 px-6 py-2.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-xl font-medium text-sm transition-all duration-200 shadow-lg shadow-blue-500/20"
->>>>>>> feature/about-page
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Video className="w-4 h-4" />
