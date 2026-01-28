@@ -92,7 +92,7 @@ export default function Hero() {
         </div>
 
      
-        <h1 className="max-w-5xl mx-auto text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-[140px] font-extrabold tracking-tight leading-[1.05] text-white text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-[140px] font-extrabold tracking-tight leading-[1.05] text-white text-center">
           <TypewriterEffectSmooth className="text-white" words={words} />
         </h1>
 
