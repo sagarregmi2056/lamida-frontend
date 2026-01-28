@@ -2,12 +2,10 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Wallet, Cloud, Code, Coins, Network } from 'lucide-react';
+import {  Cloud, Code, Network } from 'lucide-react';
+import { Marquee, MarqueeContent, MarqueeItem } from '@/components/ui/marquee';
 
-// Logos can be either image files or icon components
-// For images: Place logo files in public/logos/ folder (e.g., bittensor.svg, aws.svg, etc.)
-// For icons: Use lucide-react icons as fallback
-const logos = [
+const logos = [ 
   {
     name: 'Bittensor',
     type: 'image',
@@ -100,101 +98,48 @@ export default function Logos() {
 
 
         {/* Logos Marquee */}
-        <div className="mt-10 overflow-hidden">
-          <style dangerouslySetInnerHTML={{__html: `
-            @keyframes marquee {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-            .marquee-container {
-              display: flex;
-              width: fit-content;
-              animation: marquee 30s linear infinite;
-            }
-            .marquee-container:hover {
-              animation-play-state: paused;
-            }
-          `}} />
-          <div className="marquee-container flex items-center gap-6 md:gap-16 opacity-90">
-            {/* First set of logos */}
-            {logos.map((logo) => {
-              const hasError = imageErrors[logo.name];
-              
-              return (
-                <div 
-                  key={logo.name} 
-                  className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300 cursor-pointer flex-shrink-0"
-                >
-                  {logo.type === 'image' && logo.src ? (
-                    <div className="relative h-9 md:h-12 w-auto">
-                      {hasError && logo.fallback ? (
+        <div className="mt-10">
+          <Marquee>
+            <MarqueeContent speed={40} pauseOnHover={true}>
+              {logos.map((logo) => {
+                const hasError = imageErrors[logo.name];
+
+                return (
+                  <MarqueeItem key={logo.name} className="mx-6 md:mx-8">
+                    <div className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                      {logo.type === "image" && logo.src ? (
+                        <div className="relative h-9 md:h-12 w-auto">
+                          {hasError && logo.fallback ? (
+                            <div>{logo.fallback}</div>
+                          ) : (
+                            <Image
+                              src={logo.src}
+                              alt={logo.alt}
+                              width={128}
+                              height={128}
+                              className={`
+                                h-9 md:h-12 w-auto object-contain transition-all duration-300
+                                ${
+                                  logo.noInvert
+                                    ? "opacity-80 hover:opacity-100"
+                                    : "filter brightness-0 invert group-hover:filter-none"
+                                }
+                              `}
+                              onError={() => handleImageError(logo.name)}
+                              priority
+                              quality={100}
+                            />
+                          )}
+                        </div>
+                      ) : logo.fallback ? (
                         <div>{logo.fallback}</div>
-                      ) : (
-                        <Image
-                          src={logo.src}
-                          alt={logo.alt}
-                          width={128}
-                          height={128}
-                          className={`
-                            h-9 md:h-12 w-auto object-contain transition-all duration-300
-                            ${logo.noInvert 
-                              ? 'opacity-80 hover:opacity-100' 
-                              : 'filter brightness-0 invert group-hover:filter-none'}
-                          `}
-                          onError={() => handleImageError(logo.name)}
-                          priority
-                          quality={100}
-                        />
-                      )}
+                      ) : null}
                     </div>
-                  ) : logo.fallback ? (
-                    <div>{logo.fallback}</div>
-                  ) : null}
-                </div>
-              );
-            })}
-            {/* Duplicate set for seamless loop */}
-            {logos.map((logo) => {
-              const hasError = imageErrors[logo.name];
-              
-              return (
-                <div 
-                  key={`${logo.name}-duplicate`} 
-                  className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all duration-300 cursor-pointer flex-shrink-0"
-                >
-                  {logo.type === 'image' && logo.src ? (
-                    <div className="relative h-9 md:h-12 w-auto">
-                      {hasError && logo.fallback ? (
-                        <div>{logo.fallback}</div>
-                      ) : (
-                        <Image
-                          src={logo.src}
-                          alt={logo.alt}
-                          width={128}
-                          height={128}
-                          className={`
-                            h-9 md:h-12 w-auto object-contain transition-all duration-300
-                            ${logo.noInvert 
-                              ? 'opacity-80 hover:opacity-100' 
-                              : 'filter brightness-0 invert group-hover:filter-none'}
-                          `}
-                          onError={() => handleImageError(logo.name)}
-                          priority
-                          quality={100}
-                        />
-                      )}
-                    </div>
-                  ) : logo.fallback ? (
-                    <div>{logo.fallback}</div>
-                  ) : null}
-                </div>
-              );
-            })}
-          </div>
+                  </MarqueeItem>
+                );
+              })}
+            </MarqueeContent>
+          </Marquee>
         </div>
       </div>
     </section>

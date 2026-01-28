@@ -26,7 +26,7 @@ export default function Navigation() {
             <div className="w-11 h-11 bg-blue-500 rounded-lg flex items-center justify-center">
               <Image src="/logo.png" alt="Lamida" width={110} height={110} />
             </div>
-            <span className="text-white font-semibold text-sm tracking-wide">
+            <span className="text-white ml-2 font-semibold text-[22.32px] tracking-wide">
               Lamida
             </span>
           </Link>
