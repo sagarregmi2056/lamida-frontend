@@ -18,13 +18,22 @@ interface FeaturedWorksProps {
  const FeaturedWorks:React.FC<FeaturedWorksProps>=({ title, card }) => {
   return (
     <section className="relative z-10 w-full py-10 bg-black">
-       <div 
-          className="absolute inset-0 opacity-[0.15]"
-          style={{ 
-            backgroundImage: 'linear-gradient(rgb(82, 79, 99) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)',
-            backgroundSize: '80px 80px' 
-          }}
-        />
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgb(82, 79, 99) 1px, transparent 1px), linear-gradient(90deg,rgb(101, 102, 118) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* Colored glows */}
+      <div className="absolute bottom-[8%] left-[8%] w-[30%] h-[50%] bg-blue-600/60 blur-[120px] rounded-full" />
+      <div className="absolute top-[10%] right-[20%] w-[30%] h-[50%] bg-blue-700/40 blur-[120px] rounded-full" />
+
+      {/* Bottom fade to pure black to blend smoothly into next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[25%] bg-gradient-to-b from-transparent to-black" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
