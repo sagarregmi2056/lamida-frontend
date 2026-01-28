@@ -53,7 +53,7 @@ export function AnimatedBeamMultipleOutputDemo({
               width={80}
               height={80}
               style={{ backgroundColor: "black" }}
-              className="h-full w-full object-contain"
+              className="h-full w-full object-contain pt-2"
             />
           </Circle>
         </div>

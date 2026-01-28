@@ -18,11 +18,11 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
+    <nav className="fixed top-0 pt-5 pb-5 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex flex-col items-start justify-center gap-1">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-11 h-11 bg-blue-500 rounded-lg flex items-center justify-center">
               <Image src="/logo.png" alt="Lamida" width={110} height={110} />
             </div>

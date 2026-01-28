@@ -91,7 +91,7 @@ export default function Logos() {
   };
 
   return (
-    <section className="relative z-10 w-full py-16 bg-[#0B1222]/60 backdrop-blur-xl border-y border-white/[0.05]">
+    <section className="relative z-10 w-full py-16 bg-black">
       <div className="container mx-auto px-4">
         {/* Powering Tools Text */}
 <p className="text-gray-400/80 text-center text-xl md:text-xl lg:text-2xl mb-12 font-medium tracking-wide">

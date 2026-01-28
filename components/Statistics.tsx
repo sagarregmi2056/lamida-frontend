@@ -166,16 +166,16 @@ export default function Statistics() {
       gradient: "from-purple-400 via-purple-500/50 to-purple-600/50",
     },
     {
-      value: taoData.volume,
-      prefix: "$",
-      label: "Today's Volume",
-      gradient: "from-blue-400 via-blue-500 to-blue-600/50",
-    },
-    {
       value: taoData.marketCap,
       prefix: "$",
       label: "Market Cap",
       gradient: "from-green-400 via-green-500 to-green-600/50",
+    },
+    {
+      value: taoData.volume,
+      prefix: "$",
+      label: "Today's Volume",
+      gradient: "from-blue-400 via-blue-500 to-blue-600/50",
     },
   ];
 
