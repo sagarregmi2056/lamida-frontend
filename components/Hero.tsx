@@ -29,7 +29,7 @@ const words = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-start justify-center px-6 lg:px-8 pt-40 pb-0 overflow-hidden text-center">
+    <section className="relative min-h-[90vh] flex items-start justify-center px-6 lg:px-8 pt-50 pb-0 overflow-hidden text-center">
      
      
       

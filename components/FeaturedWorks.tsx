@@ -72,7 +72,7 @@ interface FeaturedWorksProps {
 function ProjectCard({ project, index }: { project: CardInfo; index: number }) {
   return (
     <div
-      className="group relative flex flex-col w-full h-[260px] md:h-[320px] lg:h-[360px] rounded-[32px] overflow-hidden border border-white/10 bg-[#050509] hover:border-white/25 transition-all duration-500 cursor-pointer"
+      className="group relative flex flex-col w-full h-[260px] md:h-[320px] lg:h-[360px] rounded-[32px] overflow-hidden border border-white/40 bg-[#050509] hover:border-white/25   transition-all duration-500 cursor-pointer"
       style={{ minWidth: 0 }}
     >
       <div className="absolute inset-0 z-20 pointer-events-none">

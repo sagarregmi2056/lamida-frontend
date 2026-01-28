@@ -22,8 +22,8 @@ const cards = [
     title: 'Services',
     subtitle: 'End to End Outsourcing for Subnet Needs',
     description: 'We develop subnets, design incentive mechanisms (IM), run miners and validators, servicing TAO ecosystem.',
-    image: '/image 339.png',
-    color: 'from-blue-500/10 to-emerald-500/10'
+    image: '/card3.png',
+    color: 'from--500/10 to-black-500/10'
   }
 ];
 
