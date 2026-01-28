@@ -9,6 +9,7 @@ import Insights from "@/components/Insights";
 import BookACall from "@/components/BookACall";
 import Footer from "@/components/Footer";
 
+
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black overflow-x-hidden">
