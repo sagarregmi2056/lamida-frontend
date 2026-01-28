@@ -92,14 +92,14 @@ export default function Hero() {
         </div>
 
      
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[150px] font-extrabold tracking-tight leading-[1.1] text-white whitespace-nowrap overflow-hidden">
-        <TypewriterEffectSmooth className="text-white" words={words} />
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-[140px] font-extrabold tracking-tight leading-[1.05] text-white text-center">
+          <TypewriterEffectSmooth className="text-white" words={words} />
         </h1>
 
       
         <p className="text-3xl md:text-5xl font-light text-gray-200/90 max-w-3xl leading-snug">
           on the{" "}
-          <span className="relative whitespace-nowrap inline-block">
+          <span className="relative  inline-block">
            
             <span className="relative">Bittensor Network</span>
           </span>
